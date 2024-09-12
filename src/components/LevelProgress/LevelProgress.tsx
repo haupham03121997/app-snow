@@ -16,7 +16,7 @@ const LevelProgress: React.FC<LevelProgressProps> = ({ levelIndex, processValue 
       <div className='w-full'>
         <div className='flex justify-between'>
           {!currentUser && <Skeleton className='w-[150px] h-4' />}
-          {currentUser && <p className='text-sm truncate w-[150px]'>{currentUser?.ceo_level.name}</p>}
+          {currentUser && <p className='text-sm truncate w-[150px]'>{currentUser?.ceo_level?.name}</p>}
           <p className='text-sm w-[40px]'>
             {levelIndex + 1} <span className='text-[#95908a]'>/ {LEVEL_NAMES.length}</span>
           </p>
