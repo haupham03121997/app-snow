@@ -9,7 +9,9 @@ import './App.css'
 function App() {
   useEffect(() => {
     console.log('App mounted')
-    axios.get('https://api.restful-api.dev/objects').then((res) => {})
+    axios.get('https://api.restful-api.dev/objects').then((res) => {
+      console.log(res.data)
+    })
   }, [])
 
   // useGetToken()
