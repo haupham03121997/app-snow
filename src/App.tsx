@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 
 import useRouterElements from '@routes/useRouterElement'
 
+import { PointsIncrement, SheetSyncPoints } from '@components'
+import { useGetCurrentUser, useGetMining, useGetToken, usePostSyncPoints, useSyncData } from '@hooks'
 import { Toaster } from 'react-hot-toast'
 import './App.css'
 
@@ -10,11 +12,11 @@ function App() {
     console.log('App mounted')
   }, [])
 
-  // const { data } = useGetToken()
-  // useGetCurrentUser({ enabled: !!data?.token })
-  // useGetMining({ enabled: !!data?.token })
-  // useSyncData({ enabled: !!data?.token })
-  // usePostSyncPoints()
+  const { data } = useGetToken()
+  useGetCurrentUser({ enabled: !!data?.token })
+  useGetMining({ enabled: !!data?.token })
+  useSyncData({ enabled: !!data?.token })
+  usePostSyncPoints()
 
   const routeElements = useRouterElements()
   return (
@@ -30,8 +32,8 @@ function App() {
           duration: 3000
         }}
       />
-      {/* <SheetSyncPoints />
-      <PointsIncrement /> */}
+      <SheetSyncPoints />
+      <PointsIncrement />
     </>
   )
 }
