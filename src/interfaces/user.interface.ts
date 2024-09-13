@@ -42,6 +42,7 @@ export interface AuthenticateRequest {
 
 export interface AuthenticateResponse {
   token: string
+  is_new_user: boolean
 }
 
 export interface DataCardAuth {
