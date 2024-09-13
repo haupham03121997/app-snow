@@ -9,6 +9,7 @@ import CoinCard from './CoinCard'
 
 const UserMining: React.FC = () => {
   const { mining } = useStore((state) => state)
+
   return (
     <>
       <div className='grid grid-cols-3 gap-2'>

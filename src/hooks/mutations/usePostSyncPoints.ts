@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 const TIMER = 20000
 
-const usePostSyncPoints = () => {
+const usePostSyncPoints = (isFetching: boolean) => {
   const { initialPoints, mining } = useStore((state) => state)
   const queryClient = useQueryClient()
   const mutate = useMutation({
@@ -22,9 +22,11 @@ const usePostSyncPoints = () => {
   // each 10 seconds will sync points
   useEffect(() => {
     const interval = setInterval(() => {
-      const profitPerHour = Number(mining?.profit_per_hour || 0)
+      if (!mining || isFetching) return
+
+      const profitPerHour = Number(mining.profit_per_hour || 0)
       const pointsPerSecond = Math.floor(profitPerHour / 3600)
-      const points = Number(mining?.points || 0) - initialPoints + pointsPerSecond * 5
+      const points = Number(mining.points || 0) - initialPoints + pointsPerSecond * 5
       mutate.mutate(points)
     }, TIMER)
 

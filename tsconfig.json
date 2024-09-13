@@ -32,7 +32,8 @@
       "@assets": ["./src/assets"],
       "@utils": ["./src/utils"],
       "@stores": ["./src/stores"],
-      "@lib": ["./src/lib"]
+      "@lib": ["./src/lib"],
+      "@lotties": ["./src/lotties"]
     }
   },
   "include": ["src"],

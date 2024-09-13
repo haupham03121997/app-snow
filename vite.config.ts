@@ -25,7 +25,8 @@ export default defineConfig({
       { find: '@stores', replacement: '/src/stores' },
       { find: '@constants', replacement: '/src/constants' },
       { find: '@lib', replacement: '/src/lib' },
-      { find: '@apis', replacement: '/src/apis' }
+      { find: '@apis', replacement: '/src/apis' },
+      { find: '@lotties', replacement: '/src/lotties' }
     ]
   }
 })

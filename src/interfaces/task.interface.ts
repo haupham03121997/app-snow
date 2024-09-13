@@ -1,9 +1,9 @@
 export interface DataTask {
-  data: Datum[]
+  data: TaskItem[]
   total: number
 }
 
-export interface Datum {
+export interface TaskItem {
   id: string
   name: string
   social_type_id: number

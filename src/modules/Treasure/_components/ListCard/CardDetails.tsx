@@ -59,12 +59,11 @@ const CardDetails: React.FC<CardDetailsProps> = ({ card }) => {
         type: 'active'
       })
     },
-    onError: (error: any) => {
+    onError: () => {
       queryClient.refetchQueries({
         queryKey: [QueryKeys.AUTH_MINING],
         type: 'active'
       })
-      console.log('error', error)
     }
   })
 

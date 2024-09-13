@@ -32,7 +32,8 @@ const SheetSyncPoints: React.FC = () => {
     try {
       await receivePoints(dataSync?.points || 0)
     } catch (error: any) {
-      console.log('error', error)
+      console.log(error)
+    } finally {
       setIsLoading(false)
     }
   }
