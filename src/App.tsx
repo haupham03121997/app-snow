@@ -6,6 +6,7 @@ import useRouterElements from '@routes/useRouterElement'
 
 import { GlobalLoading, PointsIncrement, SheetSyncPoints } from '@components'
 import { useConfig, useGetToken, usePostSyncPoints } from '@hooks'
+import { useStore } from '@stores'
 import './App.css'
 
 function App() {
@@ -18,13 +19,15 @@ function App() {
 
   const { data, isPending } = useGetToken()
   const { isFetching } = useConfig(data?.token || null)
-  usePostSyncPoints(isFetching)
+  const { isGlobalLoading } = useStore((state) => state)
+
+  usePostSyncPoints(isFetching && !!data && !data?.is_new_user)
 
   const routeElements = useRouterElements()
   return (
     <>
       {routeElements}
-      {(isFetching || isPending) && <GlobalLoading />}
+      {(isFetching || isPending) && isGlobalLoading && <GlobalLoading />}
       <Toaster
         containerStyle={{
           top: '10%'

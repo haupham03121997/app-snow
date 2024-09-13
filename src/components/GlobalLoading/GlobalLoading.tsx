@@ -1,13 +1,15 @@
 import { useLottie } from 'lottie-react'
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import coinsData from '../../lotties/coins.json'
 
 import { mainCharacter } from '@assets/images'
+import { useStore } from '@stores'
 import './index.css'
 
 const DURATION = 5000 // 5s
 
 const GlobalLoading: React.FC = () => {
+  const { setGlobalLoading } = useStore((state) => state)
   const [processValue, setProcessValue] = React.useState(0)
   React.useEffect(() => {
     const targetValue = 98
@@ -30,6 +32,12 @@ const GlobalLoading: React.FC = () => {
     loop: true,
     heigh: 200
   }
+
+  useEffect(() => {
+    return () => {
+      setGlobalLoading(false)
+    }
+  }, [])
 
   const { View } = useLottie(options)
 
