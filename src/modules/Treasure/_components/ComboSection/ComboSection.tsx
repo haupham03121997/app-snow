@@ -27,8 +27,6 @@ const ComboSection: React.FC = () => {
       ]
     : []
 
-  console.log('luckyCard', luckyCard)
-
   return (
     <>
       <ComboCard title='Daily combo' value={`+ ${numeral(combo?.coins).format('0,0')}`} />

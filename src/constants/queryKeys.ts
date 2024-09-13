@@ -4,5 +4,7 @@ export enum QueryKeys {
   AUTH_CARD = 'auth-card',
   AUTH_MINING = 'auth-mining',
   AUTH_INVITE_FRIENDS = 'auth-invite-friends',
-  AUTH_SYNC = 'auth-sync'
+  AUTH_SYNC = 'auth-sync',
+  CLAIM = 'claim',
+  START_TASK = 'start-task'
 }

@@ -1,5 +1,6 @@
 import { BottomNavigationBar } from './BottomNavigationBar'
 import { CountDown } from './CountDown'
+import { GlobalLoading } from './GlobalLoading'
 import { Header } from './Header'
 import { LevelProgress } from './LevelProgress'
 import { PointsIncrement } from './PointsIncrement'
@@ -11,6 +12,7 @@ import { UserProfile } from './UserProfile'
 export {
   BottomNavigationBar,
   CountDown,
+  GlobalLoading,
   Header,
   LevelProgress,
   PointsIncrement,

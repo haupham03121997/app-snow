@@ -4,7 +4,6 @@ import { authApi } from '@apis/auth.api'
 import { QueryKeys } from '@constants/queryKeys'
 import { CurrentUser } from '@interfaces/user.interface'
 import { useStore } from '@stores'
-import { getLocalStorage } from '@utils'
 import { useEffect } from 'react'
 
 type UseGetCurrentUser = Omit<UseQueryOptions<CurrentUser>, 'queryKey' | 'queryFn'>
@@ -12,11 +11,9 @@ type UseGetCurrentUser = Omit<UseQueryOptions<CurrentUser>, 'queryKey' | 'queryF
 const useGetCurrentUser = (options?: UseGetCurrentUser) => {
   const { setCurrentUser } = useStore((state) => state)
 
-  const token = getLocalStorage('token')
   const queryResult = useQuery({
     queryKey: [QueryKeys.CURRENT_USER],
     queryFn: () => authApi.getCurrentUserInfo(),
-    enabled: !!token,
     ...options
   })
 
