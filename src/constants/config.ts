@@ -1,1 +1,1 @@
-export const API_URL = 'https://snow-man-server.vercel.app/api/'
+export const API_URL = 'http://34.86.237.107:3000/api/'
