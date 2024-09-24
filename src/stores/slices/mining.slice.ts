@@ -1,6 +1,7 @@
 import { StateCreator } from 'zustand'
 
 import { Mining } from '@interfaces/mining.interface'
+import { setLocalStorage } from '@utils'
 
 type MiningState = {
   initialPoints: number
@@ -27,6 +28,8 @@ const miningSlice: StateCreator<MiningStore> = (set) => {
     ...initialState,
     setMining: (mining) =>
       set(() => {
+        setLocalStorage('initialPoints', mining.points)
+        setLocalStorage('profitPerHour', mining.profit_per_hour)
         return {
           mining,
           initialPoints: Number(mining.points)
@@ -35,6 +38,7 @@ const miningSlice: StateCreator<MiningStore> = (set) => {
     setPoints: (points) =>
       set((state) => {
         if (state.mining && !state.isDisabledPoints) {
+          setLocalStorage('points', JSON.stringify(points))
           return {
             mining: {
               ...state.mining,

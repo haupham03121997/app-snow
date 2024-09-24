@@ -30,8 +30,6 @@ export const setLocalStorage = <T = any>(key: string, value: T) => {
 
 export const getLocalStorage = <T = any>(key: string): T | null => {
   const value = localStorage.getItem(key)
-  console.log('value', value)
-  console.log('key', key)
   try {
     if (!value) return null
     return JSON.parse(value)

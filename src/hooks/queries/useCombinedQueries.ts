@@ -28,6 +28,11 @@ const useCombinedQueries = (token: string | null) => {
         queryKey: [QueryKeys.AUTH_SYNC],
         queryFn: () => syncApi.getSync(),
         enabled: !!token
+      },
+      {
+        queryKey: [QueryKeys.AUTH_CARD],
+        queryFn: () => authApi.getCard(),
+        enabled: !!token
       }
     ]
   })
