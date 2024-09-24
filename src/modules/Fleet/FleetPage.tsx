@@ -22,7 +22,10 @@ const FleetPage: React.FC = () => {
       card.style.transform = ''
     }, 100)
     setPoints(points + pointsToAdd)
-    setClicks([...clicks, { id: Date.now(), x: e.pageX, y: e.pageY }])
+    setClicks((prev)=>{
+      const id = Date.now() * Math.floor(Math.random() * (10000 - 1 + 1) + 1) // random id
+      return [...prev, { id, x: e.clientX, y: e.clientY }]
+    })
   }
 
   const handleAnimationEnd = (id: number) => {
