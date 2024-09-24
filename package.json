@@ -1,8 +1,11 @@
 {
   "name": "hamster-kombat-telegram-mini-app-clone",
+  "author": "Bob vu",
+  "project": "Snow-man Demo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "/",
   "scripts": {
     "dev": "vite --host",
     "build": "tsc -b && vite build",
@@ -20,6 +23,7 @@
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "https": "^1.0.0",
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.439.0",
     "numeral": "^2.0.6",
@@ -30,6 +34,7 @@
     "react-router-dom": "^6.26.1",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "vite-plugin-require": "^1.2.14",
     "vite-plugin-svgr": "^4.2.0",
     "zustand": "^4.5.5"
   },
@@ -55,6 +60,7 @@
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.2.2",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vite-plugin-node-polyfills": "^0.22.0"
   }
 }

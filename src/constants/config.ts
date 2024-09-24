@@ -1,1 +1,1 @@
-export const API_URL = 'http://34.86.237.107:3000/api/'
+export const API_URL = 'https://smc.dt.ciis.canon.com/api/'

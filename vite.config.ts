@@ -1,13 +1,24 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
+
+
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/',
   plugins: [react()],
   server: {
-    port: 3000
+    port: 3000,
+    proxy: {
+      // Chuyển hướng các yêu cầu đến API
+      '/api': {
+        target: 'https://smc.dt.ciis.canon.com',
+        changeOrigin: true,
+        secure: false // Tắt kiểm tra SSL trong môi trường phát triển
+      }
+    }
   },
+
   resolve: {
     alias: [
       { find: '@', replacement: '/src' },

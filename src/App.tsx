@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
 
@@ -12,9 +11,6 @@ import './App.css'
 function App() {
   useEffect(() => {
     console.log('App mounted')
-    axios.get('https://api.restful-api.dev/objects').then((res) => {
-      console.log(res.data)
-    })
   }, [])
 
   const { data, isPending } = useGetToken()
