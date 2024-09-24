@@ -14,6 +14,7 @@ const FleetPage: React.FC = () => {
 
   const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget
+    console.log({card})
     const rect = card.getBoundingClientRect()
     const x = e.clientX - rect.left - rect.width / 2
     const y = e.clientY - rect.top - rect.height / 2
