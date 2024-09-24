@@ -5,7 +5,7 @@ const usePointsIncrement = () => {
   const { setPoints, mining } = useStore((state) => state)
   const profitPerHour = Number(mining?.profit_per_hour || 0)
   useEffect(() => {
-    const pointsPerSecond = Math.floor(profitPerHour / 3600)
+    const pointsPerSecond = profitPerHour / 3600
     const points = Number(mining?.points || 0)
     const interval = setInterval(() => {
       const totalPoints = points + pointsPerSecond

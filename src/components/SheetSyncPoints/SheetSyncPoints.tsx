@@ -15,7 +15,7 @@ const SheetSyncPoints: React.FC = () => {
 
   const { mutateAsync: receivePoints } = useMutation({
     mutationFn: (points: number) => syncApi.postSync({ points, energy: 0 }),
-    onSuccess: () => {
+    onSettled: () => {
       queryClient.refetchQueries({
         queryKey: [QueryKeys.AUTH_MINING],
         type: 'active'
@@ -23,7 +23,7 @@ const SheetSyncPoints: React.FC = () => {
       setTimeout(() => {
         setShowSheetSync(false)
         setIsLoading(false)
-      }, 3000)
+      }, 1000)
     }
   })
 
@@ -53,7 +53,7 @@ const SheetSyncPoints: React.FC = () => {
               <SheetTitle className='flex justify-center items-center gap-3 '>
                 <img src={hamsterCoin} alt='coin' className='w-14 h-14' />
                 <span className='text-[32px] text-white font-bold'>
-                  {formatProfitPerHour(dataSync?.points || 0, true)}
+                  {formatProfitPerHour(parseFloat((dataSync?.points || 0).toFixed(2)), true)}
                 </span>
               </SheetTitle>
             </SheetHeader>

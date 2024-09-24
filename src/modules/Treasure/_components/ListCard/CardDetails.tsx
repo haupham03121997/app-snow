@@ -39,36 +39,31 @@ const CardDetails: React.FC<CardDetailsProps> = ({ card }) => {
 
   const queryClient = useQueryClient()
 
-  const { setDisabledPoints } = useStore((state) => state)
+  const { setDisabledPoints, mining } = useStore((state) => state)
 
   const { mutateAsync: mutateBuyCard } = useMutation({
     mutationFn: (payload: { idCard: string; levelCanBuy: number }) =>
       cardApi.buyCard(payload.idCard, payload.levelCanBuy),
-    onSuccess: () => {
+
+    onSettled: () => {
       queryClient.refetchQueries({
         queryKey: [QueryKeys.AUTH_MINING],
+        type: 'active'
+      })
+      queryClient.refetchQueries({
+        queryKey: [QueryKeys.AUTH_CARD],
         type: 'active'
       })
       setTimeout(() => {
         setIsOpen(false)
         setDisabledPoints(false)
         setIsLoading(false)
-      }, 1000)
-      queryClient.refetchQueries({
-        queryKey: [QueryKeys.AUTH_CARD],
-        type: 'active'
-      })
-    },
-    onError: () => {
-      queryClient.refetchQueries({
-        queryKey: [QueryKeys.AUTH_MINING],
-        type: 'active'
-      })
+      }, 500)
     }
   })
 
   useEffect(() => {
-    setIsLocked(!!(card.locked || card.at_level_maximum))
+    setIsLocked(!!(card.locked || card.at_level_maximum || Number(card.level_coins) > Number(mining?.points)))
   }, [card])
 
   const handleBuyCard = async () => {
@@ -140,11 +135,17 @@ const CardDetails: React.FC<CardDetailsProps> = ({ card }) => {
             <p className='text-gray-500 text-xs w-10 text-center'>Lvl {card.level_can_buy || 0}</p>
             <div className='flex items-center gap-1 pl-2'>
               <span className='text-gray-500 text-xs'>
-                {card.locked &&
-                  card.condition_type_id === ConditionType.DEPEND_ON_ANOTHER_CARD &&
-                  renderDependOnAnotherCard(card)}
-                {card.locked && card.condition_type_id === ConditionType.INVITE && renderInviteFriends(card)}
-                {!card.locked && renderUnlockedCard(card)}
+                {card.at_level_maximum ? (
+                  'Max level'
+                ) : (
+                  <>
+                    {card.locked &&
+                      card.condition_type_id === ConditionType.DEPEND_ON_ANOTHER_CARD &&
+                      renderDependOnAnotherCard(card)}
+                    {card.locked && card.condition_type_id === ConditionType.INVITE && renderInviteFriends(card)}
+                    {!card.locked && renderUnlockedCard(card)}
+                  </>
+                )}
               </span>
             </div>
           </div>
