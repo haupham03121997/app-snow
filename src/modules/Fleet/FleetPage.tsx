@@ -14,7 +14,6 @@ const FleetPage: React.FC = () => {
 
   const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget
-    console.log({card})
     const rect = card.getBoundingClientRect()
     const x = e.clientX - rect.left - rect.width / 2
     const y = e.clientY - rect.top - rect.height / 2
@@ -23,7 +22,7 @@ const FleetPage: React.FC = () => {
       card.style.transform = ''
     }, 100)
     setPoints(points + pointsToAdd)
-    setClicks((prev)=>{
+    setClicks((prev) => {
       const id = Date.now() * Math.floor(Math.random() * (10000 - 1 + 1) + 1) // random id
       return [...prev, { id, x: e.clientX, y: e.clientY }]
     })

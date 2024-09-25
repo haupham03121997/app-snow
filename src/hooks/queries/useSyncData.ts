@@ -20,7 +20,10 @@ const useSyncData = (options?: UseGetSyncData) => {
 
   useEffect(() => {
     if (data) {
-      setSyncData(data)
+      setSyncData({
+        ...data,
+        points: Number(data.points || 0)
+      })
       setShowSheetSync(true)
     }
   }, [data])

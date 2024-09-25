@@ -5,6 +5,7 @@ import { syncApi } from '@apis/sync.api'
 import { QueryKeys } from '@constants/queryKeys'
 import { useStore } from '@stores'
 import { useQueries } from '@tanstack/react-query'
+import { inviteApi } from '@apis/invite.api'
 
 const useCombinedQueries = (token: string | null) => {
   const { setCurrentUser, setMining, setCombo, setDisabledPoints, setShowSheetSync, setSyncData } = useStore(
@@ -32,6 +33,11 @@ const useCombinedQueries = (token: string | null) => {
       {
         queryKey: [QueryKeys.AUTH_CARD],
         queryFn: () => authApi.getCard(),
+        enabled: !!token
+      },
+      {
+        queryKey: [QueryKeys.AUTH_INVITE_FRIENDS],
+        queryFn: () => inviteApi.getInviteFriends(),
         enabled: !!token
       }
     ]
@@ -63,8 +69,8 @@ const useCombinedQueries = (token: string | null) => {
 
   useEffect(() => {
     if (syncData) {
-      setSyncData(syncData)
-      setShowSheetSync(true)
+      setSyncData({ ...syncData, points: Number(syncData.points) })
+      setShowSheetSync(Number(syncData.points) > 0 ? true : true)
     }
   }, [syncData])
 

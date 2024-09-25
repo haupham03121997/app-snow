@@ -23,14 +23,14 @@ const SheetSyncPoints: React.FC = () => {
       setTimeout(() => {
         setShowSheetSync(false)
         setIsLoading(false)
-      }, 1000)
+      }, 500)
     }
   })
 
   const handleReceivePoints = async () => {
     setIsLoading(true)
     try {
-      await receivePoints(dataSync?.points || 0)
+      await receivePoints(Number(dataSync?.points || 0))
     } catch (error: any) {
       console.log(error)
     } finally {
@@ -53,7 +53,7 @@ const SheetSyncPoints: React.FC = () => {
               <SheetTitle className='flex justify-center items-center gap-3 '>
                 <img src={hamsterCoin} alt='coin' className='w-14 h-14' />
                 <span className='text-[32px] text-white font-bold'>
-                  {formatProfitPerHour(parseFloat((dataSync?.points || 0).toFixed(2)), true)}
+                  {formatProfitPerHour(dataSync?.points || 0, true)}
                 </span>
               </SheetTitle>
             </SheetHeader>

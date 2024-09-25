@@ -1,4 +1,4 @@
 export interface DataSync {
-  points: number
+  points: string | number
   offlineTime: number
 }
