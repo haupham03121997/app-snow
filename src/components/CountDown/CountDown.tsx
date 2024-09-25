@@ -10,7 +10,7 @@ const MINUTE_TO_MILLISECONDS = 1000 * 60
 const SECOND_TO_MILLISECONDS = 1000
 
 const CountDown: React.FC<CountDownProps> = ({ className }) => {
-  const [timeLeft, setTimeLeft] = useState('')
+  const [timeLeft, setTimeLeft] = useState('00:00:00')
 
   const calculateTimeLeft = () => {
     const now = new Date()

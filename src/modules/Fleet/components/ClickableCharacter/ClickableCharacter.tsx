@@ -13,24 +13,26 @@ const ClickableCharacter: React.FC<ClickableCharacterProps> = ({ onClick }) => {
   //   console.log({touchCount})
   //   for (let i = 0; i < touchCount; i++) {
   //     console.log("card touched", e.touches[i])
-      
+
   //   }
   // }
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    const count = e.touches.length;
-   
-    console.log({ count });
-  };
+    const count = e.touches.length
 
+    console.log({ count })
+  }
 
   const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log("card touched", e)
-  };
+    console.log('card touched', e)
+  }
 
   return (
-    <div className='w-80 h-80 p-4 rounded-full circle-outer' onClick={onClick} onTouchStart={handleTouchStart}
-    onMouseUp={handleMouseUp}
+    <div
+      className='w-80 h-80 p-4 rounded-full circle-outer'
+      onClick={onClick}
+      onTouchStart={handleTouchStart}
+      onMouseUp={handleMouseUp}
     >
       <div className='w-full h-full rounded-full circle-inner'>
         <img src={mainCharacter} alt='Main Character' className='w-full h-full' />

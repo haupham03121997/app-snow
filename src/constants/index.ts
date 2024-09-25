@@ -9,7 +9,9 @@ export const LEVEL_NAMES = [
   'Legendary', // From 10,000,000 coins to 50,000,000 coins
   'Master', // From 50,000,000 coins to 100,000,000 coins
   'GrandMaster', // From 100,000,000 coins to 1,000,000,000 coins
-  'Lord' //
+  'Lord',
+  'God',
+  'God'
 ]
 
 export const LEVEL_MIN_POINTS = [
@@ -22,5 +24,7 @@ export const LEVEL_MIN_POINTS = [
   10000000, // Legendary
   50000000, // Master
   100000000, // GrandMaster
-  1000000000 // Lord
+  1000000000, // Lord
+  10000000000, // God
+  100000000000 // God
 ]

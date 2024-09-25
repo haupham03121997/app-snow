@@ -11,7 +11,6 @@ export const syncApi = {
     }
   },
   postSync: async (payload: { points: number; energy: number }) => {
-    console.log({ payload })
     try {
       const response = await fetcher.post<any>(`/user-sync`, payload)
       return response.data

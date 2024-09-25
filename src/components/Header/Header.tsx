@@ -13,6 +13,7 @@ const Header: React.FC = () => {
   const levelIndex = useLevelManagement(points, LEVEL_MIN_POINTS, LEVEL_NAMES)
 
   const processValue = calculateProgress(points, levelIndex, LEVEL_MIN_POINTS, LEVEL_NAMES)
+
   return (
     <div className='px-4 z-10 flex justify-between items-center py-2'>
       <UserProfile />

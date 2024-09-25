@@ -1,6 +1,6 @@
 import { StateCreator } from 'zustand'
 
-import { DataSync } from '@interfaces/sync.interface'
+type DataSync = { points: number; offlineTime: number }
 
 type SyncState = {
   dataSync: DataSync | null

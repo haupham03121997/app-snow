@@ -100,7 +100,6 @@ const BottomNavigationBar = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log('RUN RUN ')
       const profitPerHour = Number(getLocalStorage('profitPerHour') || 0)
       const points = Number(getLocalStorage('points') || 0)
       const initialPoints = Number(getLocalStorage('initialPoints') || 0)
