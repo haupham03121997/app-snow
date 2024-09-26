@@ -2,7 +2,7 @@
 import { memo, useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { binanceLogo, hamsterCoin } from '@/assets/images'
+import { binanceLogo } from '@/assets/images'
 import { syncApi } from '@apis/sync.api'
 import { Coins, Friends, Mine } from '@assets/icons'
 import { QueryKeys } from '@constants/queryKeys'
@@ -90,12 +90,12 @@ const BottomNavigationBar = () => {
       icon: <Coins className='w-8 h-8 mx-auto' />,
       label: 'Quests'
     },
-    {
-      className: memoizedClassNames.airdrop,
-      onClick: () => handleClick('/airdrop', 'airdrop'),
-      icon: <img src={hamsterCoin} alt='Airdrop' className='w-8 h-8 mx-auto' />,
-      label: 'Airdrop'
-    }
+    // {
+    //   className: memoizedClassNames.airdrop,
+    //   onClick: () => handleClick('/airdrop', 'airdrop'),
+    //   icon: <img src={hamsterCoin} alt='Airdrop' className='w-8 h-8 mx-auto' />,
+    //   label: 'Airdrop'
+    // }
   ]
 
   useEffect(() => {
