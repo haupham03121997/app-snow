@@ -42,7 +42,7 @@ const SheetSyncPoints: React.FC = () => {
     <Sheet open={isShowSheetSync}>
       <SheetContent
         side={'bottom'}
-        className='rounded-t-[38px] border-t-0 bg-[#f3ba2f]  top-glow p-0'
+        className='rounded-t-[38px] border-t-0 bg-[#f3ba2f]  top-glow p-0 max-w-xl mx-auto'
         classNameIcon='right-4 top-5 focus:ring-0'
         isHiddenClose
         aria-describedby='sheet-sync-points'

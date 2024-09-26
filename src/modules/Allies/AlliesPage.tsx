@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { hamsterCoin } from '@assets/images'
 import { useGetInviteFriends } from '@hooks'
 
+import { TELEGRAM_BOT_URL } from '@constants/config'
 import { ListFriends } from './_components/ListFriends'
 import { ListTask } from './_components/ListTask'
 
@@ -29,6 +30,16 @@ const AlliesPage: React.FC = () => {
       console.error('Lỗi khi sao chép!', err)
     }
   }
+
+  const handleInviteFriend = () => {
+    const url = `${TELEGRAM_BOT_URL}?start=${queryResult?.data?.referral_code}`
+    const text = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
+💰 +1,000 coins per hour as a first-time gift 🎁
+🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
+    const linkRedirect = `https://t.me/share/url?url=${url}&text=${text}`
+    window.open(linkRedirect, '_blank')
+  }
+
   return (
     <div className='w-full bg-black text-white h-screen font-bold flex flex-col max-w-xl px-4'>
       <div className='text-center mx-8 mt-8 space-y-4'>
@@ -39,7 +50,10 @@ const AlliesPage: React.FC = () => {
       <ListFriends data={friendsData} isLoading={isLoading} />
 
       <div className='mt-auto pb-4 rounded-2xl  p-y[10px] leading-7 mb-20 flex w-full justify-center items-center'>
-        <div className='flex-1 bg-gradient-to-b from-[#D3BA40]  to-[#F9A208] h-[66px] w-full flex justify-center rounded-2xl'>
+        <div
+          className='flex-1 bg-gradient-to-b from-[#D3BA40]  to-[#F9A208] h-[66px] w-full flex justify-center rounded-2xl'
+          onClick={handleInviteFriend}
+        >
           <p className='flex items-center justify-center'>
             invite a friend <img src={hamsterCoin} alt='airdrop' className='h-5 mx-auto pl-2' />
           </p>
