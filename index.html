@@ -13,6 +13,7 @@
     <script>
       const tg = window.Telegram.WebApp
       const user = tg.initDataUnsafe.user
+      console.log('User:', tg.initDataUnsafe)
       if (user) {
         localStorage.setItem('telegram_id', user.id)
         localStorage.setItem('telegram_username', user.username)
