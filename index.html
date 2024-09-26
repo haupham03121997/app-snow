@@ -18,6 +18,7 @@
         localStorage.setItem('telegram_username', user.username)
         localStorage.setItem('telegram_firstname', user.first_name)
         localStorage.setItem('telegram_lastname', user.last_name)
+        localStorage.setItem('referral_code', tg.initDataUnsafe.start)
       } else {
         console.log('Cannot retrieve user telegram information.')
       }
