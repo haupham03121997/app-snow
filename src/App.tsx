@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import WebApp from '@twa-dev/sdk'
+import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 
 import useRouterElements from '@routes/useRouterElement'
@@ -17,7 +18,28 @@ function App() {
   const { isFetching } = useConfig(data?.token || null)
   const { isGlobalLoading } = useStore((state) => state)
 
+  const [initData, setInitData] = useState('')
+  const [userId, setUserId] = useState('')
+  const [startParam, setStartParam] = useState('')
+
   usePostSyncPoints(isFetching && !!data && !data?.is_new_user)
+
+  useEffect(() => {
+    const initWebApp = async () => {
+      WebApp.ready()
+      setInitData(WebApp.initData)
+      setUserId(WebApp.initDataUnsafe.user?.id.toString() || '')
+      setStartParam(WebApp.initDataUnsafe.start_param || '')
+    }
+
+    initWebApp()
+  }, [])
+
+  console.log({
+    initData,
+    userId,
+    startParam
+  })
 
   const routeElements = useRouterElements()
   return (

@@ -1,3 +1,4 @@
+import { initUtils } from '@telegram-apps/sdk'
 import { Copy } from 'lucide-react'
 import React, { useState } from 'react'
 
@@ -17,11 +18,12 @@ const AlliesPage: React.FC = () => {
   const tasksData = queryResult.data?.tasks || []
   const isLoading = queryResult.isLoading
 
-  const textToCopy = 'Đây là văn bản cần sao chép'
 
-  const handleCopy = async () => {
+  const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(textToCopy)
+       const referralCode = queryResult.data?.referral_code
+       const inviteLink = `${TELEGRAM_BOT_URL}?startapp=${referralCode}`
+      await navigator.clipboard.writeText(inviteLink)
       setShowModal(true)
       setTimeout(() => {
         setShowModal(false)
@@ -31,22 +33,16 @@ const AlliesPage: React.FC = () => {
     }
   }
 
-const handleInviteFriend = () => {
-  // Extract the 'startapp' parameter from the URL
-  const currentUrl = window.location.href
-  const urlParams = new URLSearchParams(new URL(currentUrl).search)
-  const startAppParam = urlParams.get('start')
-
-  // Construct the URL and text for the Telegram invite
-  const url = `${TELEGRAM_BOT_URL}?start=${queryResult?.data?.referral_code || startAppParam}`
-  const text = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
+  const handleInviteFriend = () => {
+    const utils = initUtils()
+    const referralCode = queryResult.data?.referral_code
+    const inviteLink = `${TELEGRAM_BOT_URL}?startapp=${referralCode}`
+    const shareText = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
 💰 +1,000 coins per hour as a first-time gift 🎁
 🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
-  const linkRedirect = `https://t.me/share/url?url=${url}&text=${text}`
-
-  // Open the constructed link in a new tab
-  window.open(linkRedirect, '_blank')
-}
+    const fullUrl = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(shareText)}`
+    utils.openTelegramLink(fullUrl)
+  }
 
   return (
     <div className='w-full bg-black text-white h-screen font-bold flex flex-col max-w-xl px-4'>
@@ -68,7 +64,7 @@ const handleInviteFriend = () => {
         </div>
         <div
           className='bg-gradient-to-b from-[#D3BA40] to-[#F9A208]  w-[66px] h-[66px] ml-2 rounded-2xl flex items-center justify-center cursor-pointer'
-          onClick={!isLoading ? handleCopy : undefined}
+          onClick={!isLoading ? handleCopyLink : undefined}
         >
           <Copy size={28} />
         </div>
