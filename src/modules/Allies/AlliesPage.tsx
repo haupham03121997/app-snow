@@ -22,7 +22,7 @@ const AlliesPage: React.FC = () => {
 
   const handleCopyLink = async () => {
     try {
-      const inviteLink = `${TELEGRAM_BOT_URL}?startapp=${currentUser?.id}`
+      const inviteLink = `${TELEGRAM_BOT_URL}?start=${currentUser?.id}`
       await navigator.clipboard.writeText(inviteLink)
       setShowModal(true)
       setTimeout(() => {
@@ -42,8 +42,7 @@ const AlliesPage: React.FC = () => {
     // 💰 +1,000 coins per hour as a first-time gift 🎁
     // 🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
     //     const fullUrl = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(shareText)}`
-
-    const url = `${TELEGRAM_BOT_URL}?startapp=6387347744`
+    const url = `${TELEGRAM_BOT_URL}?start=${Buffer.from('6387347744').toString('base64')}`
     const shareText = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
 💰 +1,000 coins per hour as a first-time gift 🎁
 🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
