@@ -41,7 +41,7 @@ const AlliesPage: React.FC = () => {
     // 🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
     //     const fullUrl = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(shareText)}`
 
-    const url = `${TELEGRAM_BOT_URL}?startapp=${queryResult?.data?.referral_code}`
+    const url = `${TELEGRAM_BOT_URL}?start=${queryResult?.data?.referral_code}`
     const text = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
 💰 +1,000 coins per hour as a first-time gift 🎁
 🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
