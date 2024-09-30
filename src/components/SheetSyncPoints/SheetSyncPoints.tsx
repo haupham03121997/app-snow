@@ -59,8 +59,8 @@ const SheetSyncPoints: React.FC = () => {
             </SheetHeader>
 
             <div className='absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 bg-black  rounded-full p-2'>
-              <div className='bg-[#272a2f] rounded-full'>
-                <img src={mainCharacter} alt='Main Character' className='w-full h-full' />
+              <div className='bg-[#272a2f] rounded-full w-full h-full flex items-center justify-center'>
+                <img src={mainCharacter} alt='Main Character' className='w-[80%] h-[80%]' />
               </div>
             </div>
             <SheetDescription className='text-center text-white pt-6 font-semibold text-base'>

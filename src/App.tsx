@@ -30,7 +30,6 @@ function App() {
       setInitData(WebApp.initData)
       setUserId(WebApp.initDataUnsafe.user?.id.toString() || '')
       setStartParam(WebApp.initDataUnsafe.start_param || '')
-      localStorage.setItem('initData', JSON.stringify(WebApp.initDataUnsafe.start_param))
     }
 
     initWebApp()
@@ -45,7 +44,6 @@ function App() {
   const routeElements = useRouterElements()
   return (
     <>
-      {JSON.stringify(startParam)}
       {routeElements}
       {(isFetching || isPending) && isGlobalLoading && <GlobalLoading />}
       <Toaster

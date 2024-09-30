@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 
 import { cardApi } from '@apis/card.api'
-import { hamsterCoin, mainCharacter, whalePirate } from '@assets/images'
+import { hamsterCoin, mainCharacter, snowManV1 } from '@assets/images'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@components/ui/sheet'
 import { ConditionType } from '@constants/conditionType'
 import { QueryKeys } from '@constants/queryKeys'
@@ -118,7 +118,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({ card }) => {
             </>
           )}
           <div className='flex gap-2'>
-            <img src={whalePirate} className='w-10 h-10' alt='whale' />
+            <img src={snowManV1} className='w-8 h-8 rounded-full' alt='whale' />
             <div className='flex flex-col gap-2 flex-1'>
               <h3 className='text-sm text-gray-300 text-start'>{card.name}</h3>
               <p className='text-xs text-gray-500  text-start'>Profit per hour</p>
