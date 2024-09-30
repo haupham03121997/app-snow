@@ -6,6 +6,7 @@ import { hamsterCoin } from '@assets/images'
 import { useGetInviteFriends } from '@hooks'
 
 import { TELEGRAM_BOT_URL } from '@constants/config'
+import { useStore } from '@stores'
 import { ListFriends } from './_components/ListFriends'
 import { ListTask } from './_components/ListTask'
 
@@ -13,6 +14,7 @@ const AlliesPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false)
 
   const queryResult = useGetInviteFriends()
+  const {currentUser} = useStore((state) => state)
 
   const friendsData = queryResult.data?.friends || []
   const tasksData = queryResult.data?.tasks || []
@@ -20,7 +22,7 @@ const AlliesPage: React.FC = () => {
 
   const handleCopyLink = async () => {
     try {
-      const inviteLink = `${TELEGRAM_BOT_URL}?startapp=${queryResult?.data?.referral_code}`
+      const inviteLink = `${TELEGRAM_BOT_URL}?startapp=${currentUser?.id}`
       await navigator.clipboard.writeText(inviteLink)
       setShowModal(true)
       setTimeout(() => {
@@ -41,11 +43,11 @@ const AlliesPage: React.FC = () => {
     // 🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
     //     const fullUrl = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(shareText)}`
 
-    const url = `${TELEGRAM_BOT_URL}?start=${queryResult?.data?.referral_code}`
-    const text = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
+    const url = `${TELEGRAM_BOT_URL}?startapp=6387347744`
+    const shareText = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
 💰 +1,000 coins per hour as a first-time gift 🎁
 🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
-    const linkRedirect = `https://t.me/share/url?url=${url}&text=${text}`
+    const linkRedirect = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`
     utils.openTelegramLink(linkRedirect)
   }
 
