@@ -35,7 +35,7 @@ const ClickableCharacter: React.FC<ClickableCharacterProps> = ({ onClick }) => {
       onMouseUp={handleMouseUp}
     >
       <div className='w-full h-full rounded-full circle-inner'>
-        <img src={mainCharacter} alt='Main Character' className='w-full h-full' />
+        <img src={mainCharacter} alt='Main Character' className='w-[90%] h-[90%]' />
       </div>
     </div>
   )

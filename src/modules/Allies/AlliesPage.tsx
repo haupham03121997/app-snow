@@ -1,3 +1,4 @@
+import { initUtils } from '@telegram-apps/sdk'
 import { Copy } from 'lucide-react'
 import React, { useState } from 'react'
 
@@ -19,8 +20,7 @@ const AlliesPage: React.FC = () => {
 
   const handleCopyLink = async () => {
     try {
-      const referralCode = queryResult.data?.referral_code
-      const inviteLink = `${TELEGRAM_BOT_URL}?startapp=${referralCode}`
+      const inviteLink = `${TELEGRAM_BOT_URL}?startapp=${queryResult?.data?.referral_code}`
       await navigator.clipboard.writeText(inviteLink)
       setShowModal(true)
       setTimeout(() => {
@@ -33,20 +33,20 @@ const AlliesPage: React.FC = () => {
 
   // https://t.me/hamtaro_coins_bot?startapp=AARkfNyqyBU=
   const handleInviteFriend = () => {
-    //     const utils = initUtils()
+    const utils = initUtils()
     //     const referralCode = queryResult.data?.referral_code
     //     const inviteLink = `${TELEGRAM_BOT_URL}?startapp=${referralCode}`
     //     const shareText = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
     // 💰 +1,000 coins per hour as a first-time gift 🎁
     // 🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
     //     const fullUrl = `https://t.me/share/url?url=${encodeURIComponent(inviteLink)}&text=${encodeURIComponent(shareText)}`
-    //     utils.openTelegramLink(fullUrl)
+
     const url = `${TELEGRAM_BOT_URL}?startapp=${queryResult?.data?.referral_code}`
     const text = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
 💰 +1,000 coins per hour as a first-time gift 🎁
 🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
     const linkRedirect = `https://t.me/share/url?url=${url}&text=${text}`
-    window.open(linkRedirect, '_blank')
+    utils.openTelegramLink(linkRedirect)
   }
 
   return (

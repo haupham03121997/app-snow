@@ -6,8 +6,8 @@ import dailyReward from './daily-reward.png'
 import dollarCoin from './dollar-coin.png'
 import hamsterCoin from './hamster-coin.png'
 import hamsterExchange from './hamster-exchange.png'
-import mainCharacter from './main-character.png'
 import questionCoin from './question-coin.png'
+import mainCharacter from './snow-man.png'
 import whalePirate from './whale-pirate.png'
 
 export {
