@@ -37,7 +37,7 @@ const FleetPage: React.FC = () => {
       <div className='flex-grow mt-8 bg-[#f3ba2f] rounded-t-[48px] relative top-glow z-0'>
         <div className='bg-[#1d2025] h-full w-full rounded-t-[46px] mt-[2px] pt-6 px-4 flex flex-col gap-8'>
           <UserMining />
-          <div className='px-4 flex justify-center xxs:pb-24 pb-0'>
+          <div className='flex justify-center xxs:pb-24 pb-0'>
             <ClickableCharacter onClick={handleCardClick} />
           </div>
         </div>

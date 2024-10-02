@@ -1,6 +1,6 @@
 // src/components/ClickableCharacter.tsx
 
-import { mainCharacter } from '@assets/images'
+import { snowManTap } from '@assets/images'
 import React from 'react'
 
 interface ClickableCharacterProps {
@@ -35,7 +35,7 @@ const ClickableCharacter: React.FC<ClickableCharacterProps> = ({ onClick }) => {
       onMouseUp={handleMouseUp}
     >
       <div className='w-full h-full rounded-full circle-inner'>
-        <img src={mainCharacter} alt='Main Character' className='w-[90%] h-[90%]' />
+        <img src={snowManTap} alt='Main Character' className='w-[90%] h-[90%] rounded-full' />
       </div>
     </div>
   )

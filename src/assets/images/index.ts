@@ -7,6 +7,7 @@ import { default as dollarCoin, default as hamsterCoin } from './dollar-coin.png
 import hamsterExchange from './hamster-exchange.png'
 import questionCoin from './question-coin.png'
 import snowManV1 from './snow-man-1.png'
+import snowManTap from "./snow-man-tap.png"
 import mainCharacter from './snow-man.png'
 import whalePirate from './whale-pirate.png'
 
@@ -20,6 +21,7 @@ export {
   hamsterCoin,
   hamsterExchange,
   mainCharacter,
-  questionCoin, snowManV1, whalePirate
+  questionCoin, snowManTap, snowManV1,
+  whalePirate
 }
 

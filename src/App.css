@@ -35,7 +35,7 @@
 }
 
 .circle-outer {
-  background: linear-gradient(to bottom, #f0d27a, #c79b00);
+  background: linear-gradient(to bottom, #7dc5db, #019bca);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,12 +46,33 @@
 }
 
 .circle-inner {
-  background: radial-gradient(circle, #c79b00, #5d5744);
+  background: radial-gradient(circle, #019bca, #354347);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
+
+
+/* .circle-outer {
+  background: linear-gradient(to bottom, #8acedf, #08b3de);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  height: 90vw;
+  max-width: 360px;
+  max-height: 360px;
+}
+
+.circle-inner {
+  background: radial-gradient(circle, #85e3ec, #8db5b8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+} */
+
 
 @keyframes float {
   0% {
