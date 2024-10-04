@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { UserMining } from '@components'
 import { useStore } from '@stores'
 import { ClickableCharacter } from './components'
+import { snowflake} from '@assets/images'
 
 const FleetPage: React.FC = () => {
   const { setPoints, mining } = useStore((state) => state)
@@ -34,7 +35,7 @@ const FleetPage: React.FC = () => {
 
   return (
     <>
-      <div className='flex-grow mt-8 bg-[#f3ba2f] rounded-t-[48px] relative top-glow z-0'>
+      <div className='flex-grow mt-8 bg-[#7dc5db] rounded-t-[48px] relative top-glow z-0'>
         <div className='bg-[#1d2025] h-full w-full rounded-t-[46px] mt-[2px] pt-6 px-4 flex flex-col gap-8'>
           <UserMining />
           <div className='px-4 flex justify-center xxs:pb-24 pb-0'>
@@ -44,17 +45,31 @@ const FleetPage: React.FC = () => {
       </div>
 
       {clicks.map((click) => (
-        <div
-          key={click.id}
-          className='absolute text-5xl font-bold opacity-0 text-white pointer-events-none'
-          style={{
-            top: `${click.y - 42}px`,
-            left: `${click.x - 28}px`,
-            animation: `float 1s ease-out`
-          }}
-          onAnimationEnd={() => handleAnimationEnd(click.id)}
-        >
-          {pointsToAdd}
+        <div key={click.id} onAnimationEnd={() => handleAnimationEnd(click.id)}>
+          <div
+            
+            className='absolute text-5xl font-bold opacity-0 text-white pointer-events-none'
+            style={{
+              top: `${click.y - 42}px`,
+              left: `${click.x - 28}px`,
+              animation: `float 1s ease-out`
+            }}
+            
+          >
+            {pointsToAdd}
+            {/* <img src={snowflake} alt='Snow flake' className='w-[50%] h-[50%]' /> */}
+          </div>
+          <div
+            className='absolute text-5xl font-bold opacity-0 text-white pointer-events-none'
+            style={{
+              top: `${click.y}px`,
+              left: `${click.x}px`,
+              animation: `snowflake 2s ease-out`
+            }}
+          >
+            {/* {pointsToAdd} */}
+            <img src={snowflake} alt='Snow flake' className='w-[50%] h-[50%]' />
+          </div>  
         </div>
       ))}
     </>

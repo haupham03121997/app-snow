@@ -3,7 +3,7 @@
 }
 
 .top-glow {
-  box-shadow: 0 -26px 20px rgba(243, 186, 47, 0.3);
+  box-shadow: 0 -26px 20px rgba(42, 112, 158, 0.3);
 }
 
 /* Define the keyframes for the blinking animation */
@@ -35,7 +35,7 @@
 }
 
 .circle-outer {
-  background: linear-gradient(to bottom, #f0d27a, #c79b00);
+  background: linear-gradient(to bottom, #37637c, #136ea3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,7 +46,8 @@
 }
 
 .circle-inner {
-  background: radial-gradient(circle, #c79b00, #5d5744);
+  /* background: radial-gradient(circle, #c79b00, #5d5744); */
+  background: radial-gradient(circle, #749099, #7dc5db);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,6 +63,17 @@
   100% {
     opacity: 0;
     transform: translateY(-50px);
+  }
+}
+@keyframes snowflake {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(200px);
   }
 }
 .text-stoke-1-gray {

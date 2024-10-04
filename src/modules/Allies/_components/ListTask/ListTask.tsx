@@ -25,9 +25,9 @@ const ListTask: React.FC<ListTaskProps> = ({ data, isLoading }) => {
               <div className=''>
                 <p className='text-xl'>{item.name}</p>
                 <p className='flex gap-2 items-center pt-2'>
-                  <span className='w-2 h-2 bg-[#f3ba2f] rounded-full animate-blink'></span>
+                  <span className='w-2 h-2 bg-[#7dc5db] rounded-full animate-blink'></span>
                   <img src={hamsterCoin} alt='airdrop' className='h-5' />
-                  <span className='text-[#f3ba2f] text-sm'>{formatProfitPerHour(Number(item.coins))} </span>
+                  <span className='text-[#7dc5db] text-sm'>{formatProfitPerHour(Number(item.coins))} </span>
                   <span className='font-normal'>for you and your friend</span>
                 </p>
               </div>

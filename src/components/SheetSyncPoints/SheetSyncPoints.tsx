@@ -42,7 +42,7 @@ const SheetSyncPoints: React.FC = () => {
     <Sheet open={isShowSheetSync}>
       <SheetContent
         side={'bottom'}
-        className='rounded-t-[38px] border-t-0 bg-[#f3ba2f]  top-glow p-0 max-w-xl mx-auto'
+        className='rounded-t-[38px] border-t-0 bg-[#7dc5db]  top-glow p-0 max-w-xl mx-auto'
         classNameIcon='right-4 top-5 focus:ring-0'
         isHiddenClose
         aria-describedby='sheet-sync-points'
@@ -70,7 +70,7 @@ const SheetSyncPoints: React.FC = () => {
 
           <div className='mt-3'>
             <button
-              className='flex-1 bg-gradient-to-b from-[#D3BA40]  to-[#F9A208] h-[66px] w-full flex justify-center rounded-2xl focus:ring-0 border-none outline-none'
+              className='flex-1 bg-gradient-to-b from-[#749099] to-[#7dc5db] h-[66px] w-full flex justify-center rounded-2xl focus:ring-0 border-none outline-none'
               onClick={handleReceivePoints}
               disabled={isLoading}
             >
