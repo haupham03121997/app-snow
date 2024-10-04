@@ -26,7 +26,7 @@ const DailyTask: React.FC = ({}) => {
       <SheetContent
         onInteractOutside={(e) => e.preventDefault()}
         side={'bottom'}
-        className='rounded-t-[38px] border-t-0 bg-[#f3ba2f] top-glow p-0 text-white'
+        className='rounded-t-[38px] border-t-0 bg-[#7dc5db] top-glow p-0 text-white'
         classNameIcon='right-4 top-5 focus:ring-0 '
       >
         <div className='bg-[black] h-full w-full rounded-t-[38px] mt-[2px] py-6 px-4 grid justify-center items-center'>

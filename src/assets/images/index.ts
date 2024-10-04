@@ -9,6 +9,7 @@ import questionCoin from './question-coin.png'
 import snowManV1 from './snow-man-1.png'
 import mainCharacter from './snow-man.png'
 import whalePirate from './whale-pirate.png'
+import snowflake from './snowflake.png'
 
 export {
   airdropBgrBottom,
@@ -20,6 +21,6 @@ export {
   hamsterCoin,
   hamsterExchange,
   mainCharacter,
-  questionCoin, snowManV1, whalePirate
+  questionCoin, snowManV1, whalePirate, snowflake
 }
 

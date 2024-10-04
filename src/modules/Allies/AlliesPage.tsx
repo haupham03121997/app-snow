@@ -54,7 +54,7 @@ const AlliesPage: React.FC = () => {
 
       <div className='mt-auto pb-4 rounded-2xl  p-y[10px] leading-7 mb-20 flex w-full justify-center items-center'>
         <div
-          className='flex-1 bg-gradient-to-b from-[#D3BA40]  to-[#F9A208] h-[66px] w-full flex justify-center rounded-2xl'
+          className='flex-1 bg-gradient-to-b from-[#749099]  to-[#7dc5db] h-[66px] w-full flex justify-center rounded-2xl'
           onClick={handleInviteFriend}
         >
           <p className='flex items-center justify-center'>
@@ -62,7 +62,7 @@ const AlliesPage: React.FC = () => {
           </p>
         </div>
         <div
-          className='bg-gradient-to-b from-[#D3BA40] to-[#F9A208]  w-[66px] h-[66px] ml-2 rounded-2xl flex items-center justify-center cursor-pointer'
+          className='bg-gradient-to-b from-[#749099] to-[#7dc5db]  w-[66px] h-[66px] ml-2 rounded-2xl flex items-center justify-center cursor-pointer'
           onClick={!isLoading ? handleCopyLink : undefined}
         >
           <Copy size={28} />

@@ -44,7 +44,7 @@ const ListTask: React.FC<ListTaskProps> = ({ data, isLoading }) => {
             <SheetContent
               onInteractOutside={(e) => e.preventDefault()}
               side={'bottom'}
-              className='rounded-t-[38px] border-t-0 bg-[#f3ba2f] top-glow p-0 text-white'
+              className='rounded-t-[38px] border-t-0 bg-[#7dc5db] top-glow p-0 text-white'
               classNameIcon='right-4 top-5 focus:ring-0 '
             >
               <TaskContent

@@ -153,7 +153,7 @@ const CardDetails: React.FC<CardDetailsProps> = ({ card }) => {
       </SheetTrigger>
       <SheetContent
         side={'bottom'}
-        className='rounded-t-[38px] border-t-0 bg-[#f3ba2f]  top-glow p-0'
+        className='rounded-t-[38px] border-t-0 bg-[#7dc5db]  top-glow p-0'
         classNameIcon='right-4 top-5 focus:ring-0 '
         aria-describedby='sheet-card-details'
       >
