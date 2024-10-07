@@ -41,3 +41,14 @@ export const getLocalStorage = <T = any>(key: string): T | null => {
 export const removeLocalStorage = (key: string) => {
   localStorage.removeItem(key)
 }
+
+export const convertAgeToPoints = (age: number) => {
+  if (age < 1) return 1000
+  if (age >= 1 && age < 3) return 3000
+  if (age) return 5000
+  return 0
+}
+
+export const randomTime = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}

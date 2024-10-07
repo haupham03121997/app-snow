@@ -6,19 +6,28 @@ import { getLocalStorage, removeLocalStorage, setLocalStorage } from '@utils'
 type AuthState = {
   currentUser: CurrentUser | null
   token: string | null
+  isNewUser: boolean
+  isPremiumAccount: boolean
+  ageAccount: number | null
 }
 
 type AuthActions = {
   setCurrentUser: (user: CurrentUser) => void
   setToken: (token: string) => void
   logout: () => void
+  setNewUser: (isNewUser: boolean) => void
+  setPremiumAccount: (isPremiumAccount: boolean) => void
+  setAgeAccount: (age: number) => void
 }
 
 export type AuthStore = AuthState & AuthActions
 
 const initialState: AuthState = {
   currentUser: getLocalStorage<CurrentUser>('currentUser'),
-  token: getLocalStorage('token')
+  token: getLocalStorage('token'),
+  isNewUser: false,
+  isPremiumAccount: false,
+  ageAccount: null
 }
 
 const userSlice: StateCreator<AuthStore> = (set) => {
@@ -31,6 +40,15 @@ const userSlice: StateCreator<AuthStore> = (set) => {
     setToken: (token: string) => {
       setLocalStorage('token', token)
       set({ token })
+    },
+    setNewUser: (isNewUser: boolean) => {
+      set({ isNewUser })
+    },
+    setPremiumAccount: (isPremiumAccount: boolean) => {
+      set({ isPremiumAccount })
+    },
+    setAgeAccount: (ageAccount: number) => {
+      set({ ageAccount })
     },
     logout: () => {
       set({ currentUser: null })

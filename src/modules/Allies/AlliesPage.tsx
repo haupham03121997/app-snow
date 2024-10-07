@@ -13,7 +13,7 @@ const AlliesPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false)
 
   const queryResult = useGetInviteFriends()
-  const {currentUser} = useStore((state) => state)
+  const { currentUser } = useStore((state) => state)
 
   const friendsData = queryResult.data?.friends || []
   const tasksData = queryResult.data?.tasks || []
@@ -32,16 +32,14 @@ const AlliesPage: React.FC = () => {
     }
   }
 
- 
-
-   const handleInviteFriend = () => {
-     const url = `${TELEGRAM_BOT_URL}?start=${queryResult?.data?.referral_code}`
-     const text = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
+  const handleInviteFriend = () => {
+    const url = `${TELEGRAM_BOT_URL}?start=${queryResult?.data?.referral_code}`
+    const text = `Aye, matey! Join me crew ☝️, become the Pirate King of the Crypto Seas, and claim yer treasure! 👇
 💰 +1,000 coins per hour as a first-time gift 🎁
 🔥 +5,000 coins per hour if you have Telegram Premium ⭐`
-     const linkRedirect = `https://t.me/share/url?url=${url}&text=${text}`
-     window.open(linkRedirect, '_blank')
-   }
+    const linkRedirect = `https://t.me/share/url?url=${url}&text=${text}`
+    window.open(linkRedirect, '_blank')
+  }
 
   return (
     <div className='w-full bg-black text-white h-screen font-bold flex flex-col max-w-xl px-4'>
