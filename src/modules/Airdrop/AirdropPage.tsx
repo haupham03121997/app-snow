@@ -1,16 +1,24 @@
 import React, { useState } from 'react'
 
 import { Coins } from '@assets/icons'
-import { binanceLogo, hamsterCoin } from '@assets/images'
+import { airdropBgrBottom, binanceLogo, hamsterCoin } from '@assets/images'
+import { TonConnectButton, useTonAddress, useTonConnectUI } from '@tonconnect/ui-react'
+import { Copy } from 'lucide-react'
 
 const AlliesPage: React.FC = () => {
+  const [tonConnectUI, setOptions] = useTonConnectUI()
   const [showModal, setShowModal] = useState(false)
 
-  const textToCopy = 'Đây là văn bản cần sao chép'
+  const disconnect = async () => {
+    await tonConnectUI.disconnect()
+  }
 
-  const handleCopy = async () => {
+  const userFriendlyAddress = useTonAddress()
+  const rawAddress = useTonAddress(false)
+  const shortAddress = userFriendlyAddress.slice(0, 6) + '...' + userFriendlyAddress.slice(-4)
+  const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(textToCopy)
+      await navigator.clipboard.writeText(userFriendlyAddress)
       setShowModal(true)
       setTimeout(() => {
         setShowModal(false)
@@ -20,53 +28,50 @@ const AlliesPage: React.FC = () => {
     }
   }
   return (
-    <div className='w-full bg-black text-white h-screen font-bold flex flex-col max-w-xl bg-[#1d2025] px-4'>
-      <div className='text-center mx-8 mt-8 leading-[4]'>
-        <h1 className='text-4xl'>Invite Friends!</h1>
-        <p>You and your friend will receive bonuses</p>
+    <div className='text-white font-bold flex flex-col max-w-xl bg-[#1d2025] px-4 h-full overflow-y-auto'>
+      <div className='h-full flex flex-col justify-center'>
+        <div className='px-4 mt-4 flex justify-center'>
+          <div className='w-80 h-80 p-4 rounded-full circle-outer relative'>
+            <div className='w-full h-full rounded-full circle-inner flex items-center'>
+              <img src={hamsterCoin} alt='Main Character' />
+            </div>
+          </div>
+        </div>
+        <p className='text-center py-5'>
+          Listing is on it's way. Tasks will appear below. Complete them to participate in the Airdrop
+        </p>
+        <p className='pb-3'>Task list:</p>
+        {!rawAddress ? (
+          <div
+            className=' bg-gradient-to-b from-[#749099]  to-[#7dc5db] h-[66px] w-full flex justify-start rounded-2xl'
+            // onClick={handleInviteFriend}
+            onClick={() => tonConnectUI.openModal()}
+          >
+            <p className='flex items-center justify-center'>
+              <img src={hamsterCoin} alt='airdrop' className='h-5 mx-auto pl-2 pr-5' />
+              Connect your TON Wallet
+            </p>
+          </div>
+        ) : (
+          userFriendlyAddress && (
+            <div className=' rounded-2xl  flex w-full justify-center items-center'>
+              <div className='flex-1 bg-gradient-to-b from-[#749099]  to-[#7dc5db] h-[66px] w-full flex justify-center rounded-2xl'>
+                <p className='flex items-center justify-center' onClick={disconnect}>
+                  {shortAddress}
+                </p>
+              </div>
+              <div
+                className='bg-gradient-to-b from-[#749099] to-[#7dc5db]  w-[66px] h-[66px] ml-2 rounded-2xl flex items-center justify-center cursor-pointer'
+                onClick={handleCopyLink}
+              >
+                <Copy size={28} />
+              </div>
+            </div>
+          )
+        )}
       </div>
-      <div className='bg-gradient-to-b from-[#676767] to-[#010101] border border-[#676767] rounded-lg p-[10px] leading-7 flex items-center space-x-4'>
-        <div className='text-[#F4E493]'>
-          <Coins className='w-8 h-8 mx-auto' />
-        </div>
-        <div className=''>
-          <p>Invite a friend</p>
-          <p className='flex items-center text-[#F4E493]'>
-            {' '}
-            <img src={hamsterCoin} alt='airdrop' className='h-5 mx-auto pr-1' /> +1,000 / Hour{' '}
-          </p>
-        </div>
-      </div>
-      <div className='bg-gradient-to-b from-[#676767] to-[#010101] border border-[#676767] rounded-lg p-[10px] leading-7 flex items-center space-x-4 my-4'>
-        <div className='text-[#F4E493]'>
-          <Coins className='w-8 h-8 mx-auto' />
-        </div>
-        <div className=''>
-          <p>Invite a friend with Telegram premium</p>
-          <p className='flex items-center text-[#F4E493]'>
-            {' '}
-            <img src={binanceLogo} alt='binanceLogo' className='h-5 pr-1' /> +5,000 / Hour{' '}
-          </p>
-        </div>
-      </div>
-      <p>List of your Friends</p>
-
-      <div className='bg-gradient-to-b from-[#676767] to-[#010101] border border-[#676767] rounded-lg p-[10px] leading-7 flex items-center space-x-4 my-4 h-[76px] justify-center'>
-        <p className='items-center'>You haven't invited anyone yet..</p>
-      </div>
-
-      <div className='mt-auto  rounded-lg p-[10px] leading-7 mb-20 flex w-full justify-center items-center'>
-        <div className='bg-gradient-to-b from-[#D3BA40] to-[#C79B00] to-[#F9A208] h-[66px] w-full flex justify-center rounded-lg'>
-          <p className='flex items-center justify-center'>
-            invite a friend <img src={hamsterCoin} alt='airdrop' className='h-5 mx-auto pl-2' />
-          </p>
-        </div>
-        <div
-          className='bg-gradient-to-b from-[#D3BA40] to-[#C79B00] to-[#F9A208] h-[66px] ml-2 rounded-lg'
-          onClick={handleCopy}
-        >
-          <Coins className='w-16 h-16 mx-auto p-4' />
-        </div>
+      <div className=''>
+        <img src={airdropBgrBottom} alt='airdrop-bottom' />
       </div>
       {showModal && (
         <div className='fixed inset-0 flex items-center justify-center z-50'>

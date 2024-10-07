@@ -90,12 +90,12 @@ const BottomNavigationBar = () => {
       icon: <Coins className='w-8 h-8 mx-auto' />,
       label: 'Quests'
     },
-    // {
-    //   className: memoizedClassNames.airdrop,
-    //   onClick: () => handleClick('/airdrop', 'airdrop'),
-    //   icon: <img src={hamsterCoin} alt='Airdrop' className='w-8 h-8 mx-auto' />,
-    //   label: 'Airdrop'
-    // }
+    {
+      className: memoizedClassNames.airdrop,
+      onClick: () => handleClick('/airdrop', 'airdrop'),
+      icon: <Coins className='w-8 h-8 mx-auto' />,
+      label: 'Airdrop'
+    }
   ]
 
   useEffect(() => {

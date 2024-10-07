@@ -7,6 +7,8 @@ import useRouterElements from '@routes/useRouterElement'
 import { GlobalLoading, PointsIncrement, SheetSyncPoints } from '@components'
 import { useConfig, useGetToken, usePostSyncPoints } from '@hooks'
 import { useStore } from '@stores'
+import { TonConnectUIProvider } from '@tonconnect/ui-react'
+
 import './App.css'
 
 function App() {
@@ -43,7 +45,12 @@ function App() {
 
   const routeElements = useRouterElements()
   return (
-    <>
+    <TonConnectUIProvider
+      manifestUrl='https://5998-115-79-38-101.ngrok-free.app/tonconnect-manifest.json'
+      actionsConfiguration={{
+        twaReturnUrl: 'https://t.me/Snowmanbottest_Name_bot'
+      }}
+    >
       {routeElements}
       {(isFetching || isPending) && isGlobalLoading && <GlobalLoading />}
       <Toaster
@@ -58,7 +65,7 @@ function App() {
       />
       <SheetSyncPoints />
       <PointsIncrement />
-    </>
+    </TonConnectUIProvider>
   )
 }
 
