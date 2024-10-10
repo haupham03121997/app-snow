@@ -5,12 +5,14 @@ import { ClaimCoin } from './ClaimCoin'
 import { StepChecking } from '@constants/stepChecking'
 import { cn } from '@lib/utils'
 import './index.css'
+import { useStore } from '@stores'
 
 const StepByStep: React.FC = () => {
-  const [state, setState] = React.useState(StepChecking.CHECKING)
+  const [state, setState] = React.useState<any>(StepChecking.CHECKING)
+  const { setIsVisible } = useStore((state) => state)
+
   const nextStep = (step: StepChecking) => {
     setState(step)
-    console.log('checking', step)
   }
   const getStep = () => {
     switch (state) {
@@ -21,7 +23,8 @@ const StepByStep: React.FC = () => {
       case StepChecking.CLAIM_COIN:
         return <ClaimCoin />
       default:
-        return <CheckingYourAccount />
+        setIsVisible(false)
+        return
     }
   }
   return (
@@ -47,7 +50,7 @@ const StepByStep: React.FC = () => {
         <button
           className=' bg-gradient-to-b from-[#749099]  to-[#7dc5db]  h-[56px] w-[95%]  rounded-2xl'
           onClick={() => nextStep(state + 1)}
-          disabled={state === 3}
+          disabled={state === 4}
         >
           <p className='flex items-center justify-center w-full'>Continue</p>
         </button>

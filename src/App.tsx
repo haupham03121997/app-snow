@@ -10,6 +10,7 @@ import { useStore } from '@stores'
 import { TonConnectUIProvider } from '@tonconnect/ui-react'
 
 import './App.css'
+import { StepByStep } from '@components/StepByStep'
 
 function App() {
   useEffect(() => {
@@ -19,7 +20,7 @@ function App() {
   const { data, isPending } = useGetToken()
   const { isFetching } = useConfig(data?.token || null)
   const { isGlobalLoading } = useStore((state) => state)
-
+  const { isVisible } = useStore((state) => state)
   const [initData, setInitData] = useState('')
   const [userId, setUserId] = useState('')
   const [startParam, setStartParam] = useState('')
@@ -52,7 +53,8 @@ function App() {
       }}
     >
       {routeElements}
-      {(isFetching || isPending) && isGlobalLoading && <GlobalLoading />}
+      {(isFetching || isPending) && !isVisible && isGlobalLoading && <GlobalLoading />}
+      {isVisible && <StepByStep />}
       <Toaster
         containerStyle={{
           top: '10%'
