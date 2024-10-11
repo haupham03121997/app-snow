@@ -38,11 +38,14 @@ export interface AuthenticateRequest {
   telegram_firstname: string
   telegram_lastname: string
   user_type_id: string
+  is_premium: boolean
 }
 
 export interface AuthenticateResponse {
   token: string
   is_new_user: boolean
+  age: number
+  is_premium: boolean
 }
 
 export interface DataCardAuth {

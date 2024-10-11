@@ -1,11 +1,11 @@
 import { useEffect, useMemo } from 'react'
 
 import { authApi } from '@apis/auth.api'
+import { inviteApi } from '@apis/invite.api'
 import { syncApi } from '@apis/sync.api'
 import { QueryKeys } from '@constants/queryKeys'
 import { useStore } from '@stores'
 import { useQueries } from '@tanstack/react-query'
-import { inviteApi } from '@apis/invite.api'
 
 const useCombinedQueries = (token: string | null) => {
   const { setCurrentUser, setMining, setCombo, setDisabledPoints, setShowSheetSync, setSyncData } = useStore(
@@ -28,11 +28,6 @@ const useCombinedQueries = (token: string | null) => {
       {
         queryKey: [QueryKeys.AUTH_SYNC],
         queryFn: () => syncApi.getSync(),
-        enabled: !!token
-      },
-      {
-        queryKey: [QueryKeys.AUTH_CARD],
-        queryFn: () => authApi.getCard(),
         enabled: !!token
       },
       {

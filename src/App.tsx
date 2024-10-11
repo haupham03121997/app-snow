@@ -4,9 +4,12 @@ import { Toaster } from 'react-hot-toast'
 
 import useRouterElements from '@routes/useRouterElement'
 
-import { GlobalLoading, PointsIncrement, SheetSyncPoints } from '@components'
-import { useConfig, useGetToken, usePostSyncPoints } from '@hooks'
+import { GlobalLoading } from '@components'
+import { useConfig, useGetToken } from '@hooks'
 import { useStore } from '@stores'
+import { TonConnectUIProvider } from '@tonconnect/ui-react'
+
+import { StepByStep } from '@components/StepByStep'
 import './App.css'
 
 function App() {
@@ -17,12 +20,10 @@ function App() {
   const { data, isPending } = useGetToken()
   const { isFetching } = useConfig(data?.token || null)
   const { isGlobalLoading } = useStore((state) => state)
-
+  const { isVisible } = useStore((state) => state)
   const [initData, setInitData] = useState('')
   const [userId, setUserId] = useState('')
   const [startParam, setStartParam] = useState('')
-
-  usePostSyncPoints(isFetching && !!data && !data?.is_new_user)
 
   useEffect(() => {
     const initWebApp = async () => {
@@ -44,9 +45,15 @@ function App() {
   })
   const routeElements = useRouterElements()
   return (
-    <>
+    <TonConnectUIProvider
+      manifestUrl='https://2704-171-233-30-204.ngrok-free.app/tonconnect-manifest.json'
+      actionsConfiguration={{
+        twaReturnUrl: 'https://t.me/Snowmanbottest_Name_bot'
+      }}
+    >
       {routeElements}
-      {(isFetching || isPending) && isGlobalLoading && <GlobalLoading />}
+      {(isFetching || isPending) && !isVisible && isGlobalLoading && <GlobalLoading />}
+      {isVisible && <StepByStep />}
       <Toaster
         containerStyle={{
           top: '10%'
@@ -57,9 +64,9 @@ function App() {
           duration: 3000
         }}
       />
-      <SheetSyncPoints />
-      <PointsIncrement />
-    </>
+      {/* <SheetSyncPoints />
+      <PointsIncrement /> */}
+    </TonConnectUIProvider>
   )
 }
 
