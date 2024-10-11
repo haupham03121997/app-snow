@@ -30,6 +30,8 @@ function App() {
       setInitData(WebApp.initData)
       setUserId(WebApp.initDataUnsafe.user?.id.toString() || '')
       setStartParam(WebApp.initDataUnsafe.start_param || '')
+      console.log('WebApp.initData isPremium', WebApp.initDataUnsafe.user?.is_premium)
+      console.log('WebApp.initData ', WebApp.initDataUnsafe.user)
     }
 
     initWebApp()
@@ -40,7 +42,6 @@ function App() {
     userId,
     startParam
   })
-
   const routeElements = useRouterElements()
   return (
     <>
