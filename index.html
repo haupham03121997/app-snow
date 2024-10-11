@@ -17,15 +17,13 @@
       const user = tg.initDataUnsafe.user
       console.log('User:', tg)
       const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe
-      const startParam = initDataUnsafe.start_param
 
-      localStorage.setItem('start_param', JSON.stringify(startParam))
       if (user) {
         localStorage.setItem('telegram_id', user.id)
         localStorage.setItem('telegram_username', user.username)
         localStorage.setItem('telegram_firstname', user.first_name)
         localStorage.setItem('telegram_lastname', user.last_name)
-        localStorage.setItem('referral_code', tg.initDataUnsafe.start)
+        localStorage.setItem('telegram premium', user.is_premium)
       } else {
         console.log('Cannot retrieve user telegram information.')
       }
