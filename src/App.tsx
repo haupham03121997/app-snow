@@ -46,7 +46,7 @@ function App() {
   const routeElements = useRouterElements()
   return (
     <TonConnectUIProvider
-      manifestUrl='https://2704-171-233-30-204.ngrok-free.app/tonconnect-manifest.json'
+      manifestUrl='https://7abd-118-69-63-106.ngrok-free.app/tonconnect-manifest.json'
       actionsConfiguration={{
         twaReturnUrl: 'https://t.me/Snowmanbottest_Name_bot'
       }}
