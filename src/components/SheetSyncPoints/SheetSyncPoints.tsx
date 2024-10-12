@@ -11,7 +11,7 @@ const SheetSyncPoints: React.FC = () => {
   const queryClient = useQueryClient()
 
   const [isLoading, setIsLoading] = React.useState(false)
-  const { dataSync, isShowSheetSync, setShowSheetSync } = useStore((state) => state)
+  const { dataSync, isShowSheetSync, isVisible, setShowSheetSync } = useStore((state) => state)
 
   const { mutateAsync: receivePoints } = useMutation({
     mutationFn: (points: number) => syncApi.postSync({ points, energy: 0 }),
@@ -39,7 +39,7 @@ const SheetSyncPoints: React.FC = () => {
   }
 
   return (
-    <Sheet open={isShowSheetSync}>
+    <Sheet open={isShowSheetSync && !isVisible}>
       <SheetContent
         side={'bottom'}
         className='rounded-t-[38px] border-t-0 bg-[#7dc5db]  top-glow p-0 max-w-xl mx-auto'

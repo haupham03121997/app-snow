@@ -36,7 +36,7 @@ const UserMining: React.FC = () => {
       <div className='flex items-center justify-center'>
         <div className='flex items-center gap-2'>
           <img src={hamsterCoin} alt='Exchange' className='w-16 h-16 mx-auto' />
-          <p className='text-3xl font-bold flex'>{numeral(mining?.points || 0).format('0,0')}</p>
+          <p className='text-4xl font-bold flex font-jetbrains'>{numeral(mining?.points || 0).format('0,0')}</p>
         </div>
       </div>
     </>

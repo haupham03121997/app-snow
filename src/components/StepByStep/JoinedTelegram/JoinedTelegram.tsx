@@ -37,7 +37,7 @@ const JoinedTelegram: React.FC = () => {
           {View}
         </div>
         <p className='text-center text-[24px] font-semibold absolute top-[65%] w-full left-0'>
-          {Number(ageAccount) < 1 ? 'year' : 'years'} ago
+          {Number(ageAccount) <= 1 ? 'year' : 'years'} ago
         </p>
       </div>
       <div className='absolute w-full bottom-[10%] left-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center flex-col '>
