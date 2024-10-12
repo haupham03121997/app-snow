@@ -6,12 +6,14 @@ import comboSlice from './slices/combo.slice'
 import globalSlice from './slices/global.slice'
 import miningSlice from './slices/mining.slice'
 import syncSlice from './slices/sync.slice'
+import visibleSlice from './slices/visible.slice'
 
 type StoreState = ReturnType<typeof userSlice> &
   ReturnType<typeof miningSlice> &
   ReturnType<typeof comboSlice> &
   ReturnType<typeof syncSlice> &
-  ReturnType<typeof globalSlice>
+  ReturnType<typeof globalSlice> &
+  ReturnType<typeof visibleSlice>
 
 export const useStore = create<StoreState>()(
   devtools((...options) => ({
@@ -19,6 +21,7 @@ export const useStore = create<StoreState>()(
     ...miningSlice(...options),
     ...comboSlice(...options),
     ...syncSlice(...options),
-    ...globalSlice(...options)
+    ...globalSlice(...options),
+    ...visibleSlice(...options)
   }))
 )

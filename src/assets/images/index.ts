@@ -21,6 +21,8 @@ export {
   hamsterCoin,
   hamsterExchange,
   mainCharacter,
-  questionCoin, snowManV1, whalePirate, snowflake
+  questionCoin,
+  snowManV1,
+  whalePirate,
+  snowflake
 }
-

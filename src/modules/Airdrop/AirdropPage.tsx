@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
-import { airdropBgrBottom, hamsterCoin } from '@assets/images'
-import { useTonAddress, useTonConnectUI } from '@tonconnect/ui-react'
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@components/ui/sheet'
 import Checked from '@assets/icons/Checked'
+import { airdropBgrBottom, hamsterCoin } from '@assets/images'
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@components/ui/sheet'
+import { useTonAddress, useTonConnectUI } from '@tonconnect/ui-react'
 
 const AlliesPage: React.FC = () => {
   const [tonConnectUI] = useTonConnectUI()
@@ -30,20 +30,20 @@ const AlliesPage: React.FC = () => {
   return (
     <div className='text-white font-bold flex flex-col max-w-xl bg-[#1d2025] px-4 h-full overflow-y-auto'>
       <div className='h-full flex flex-col justify-center'>
-        <div className='px-4 mt-4 flex justify-center'>
+        <div className='mt-4 flex justify-center'>
           <div className='w-80 h-80 p-4 rounded-full circle-outer relative'>
             <div className='w-full h-full rounded-full circle-inner flex items-center'>
               <img src={hamsterCoin} alt='Main Character' />
             </div>
           </div>
         </div>
-        <p className='text-center py-5'>
+        <p className='text-center py-5 px-4 '>
           Listing is on it's way. Tasks will appear below. Complete them to participate in the Airdrop
         </p>
         <p className='pb-3'>Task list:</p>
         {!rawAddress ? (
           <div
-            className=' bg-gradient-to-b from-[#749099]  to-[#7dc5db] h-[66px] w-full flex justify-start rounded-2xl'
+            className=' bg-gradient-to-b px-4  from-[#749099]  to-[#7dc5db] h-[66px] w-full flex justify-start rounded-2xl'
             onClick={() => tonConnectUI.openModal()}
           >
             <p className='flex items-center justify-center'>

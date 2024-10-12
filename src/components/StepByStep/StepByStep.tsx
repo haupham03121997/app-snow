@@ -1,27 +1,51 @@
-import React, { memo } from 'react'
-import { CheckingYourAccount } from './CheckingAccount'
-import { JoinedTelegram } from './JoinedTelegram'
-import { ClaimCoin } from './ClaimCoin'
 import { StepChecking } from '@constants/stepChecking'
 import { cn } from '@lib/utils'
+import { useStore } from '@stores'
+import { randomTime } from '@utils'
+import React, { memo, useEffect, useState } from 'react'
+import { CheckingYourAccount } from './CheckingAccount'
+import { ClaimCoin } from './ClaimCoin'
 import './index.css'
+import { JoinedTelegram } from './JoinedTelegram'
 
 const StepByStep: React.FC = () => {
-  const [state, setState] = React.useState(StepChecking.CHECKING)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingPremium, setIsLoadingPremium] = useState(true)
+  useEffect(() => {
+    setTimeout(
+      () => {
+        setIsLoading(false)
+      },
+      randomTime(1000, 2000)
+    )
+  }, [])
+
+  useEffect(() => {
+    setTimeout(
+      () => {
+        setIsLoadingPremium(false)
+      },
+      randomTime(500, 1000)
+    )
+  }, [])
+
+  const [state, setState] = React.useState<any>(StepChecking.CHECKING)
+  const { setIsVisible } = useStore((state) => state)
+
   const nextStep = (step: StepChecking) => {
     setState(step)
-    console.log('checking', step)
   }
   const getStep = () => {
     switch (state) {
       case StepChecking.CHECKING:
-        return <CheckingYourAccount />
+        return <CheckingYourAccount isLoading={isLoading} isLoadingPremium={isLoadingPremium} />
       case StepChecking.JOINED_TELEGRAM:
         return <JoinedTelegram />
       case StepChecking.CLAIM_COIN:
         return <ClaimCoin />
       default:
-        return <CheckingYourAccount />
+        setIsVisible(false)
+        return
     }
   }
   return (
@@ -45,9 +69,9 @@ const StepByStep: React.FC = () => {
       {getStep()}
       <div className='text-white absolute z-[9999] bottom-0 -translate-y-1/2 w-full inline-flex justify-center'>
         <button
-          className=' bg-gradient-to-b from-[#749099]  to-[#7dc5db]  h-[56px] w-[95%]  rounded-2xl'
+          className=' bg-gradient-to-b from-[#749099]  to-[#7dc5db]  h-[56px] w-[90%]  rounded-2xl'
           onClick={() => nextStep(state + 1)}
-          disabled={state === 3}
+          disabled={state === 4 || isLoading || isLoadingPremium}
         >
           <p className='flex items-center justify-center w-full'>Continue</p>
         </button>

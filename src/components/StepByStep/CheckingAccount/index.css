@@ -62,18 +62,25 @@
 }
 
 .stop-animation {
-  background-color: #7dc5db;
+  background-color: black;
   animation: none;
   width: 100%;
   height: 100%;
   border-radius: 50%;
 }
 .stop-animation::after {
-  content: '✔'; /* Dấu tick */
-  color: white; /* Màu của dấu tick */
-  font-size: 14px; /* Kích thước dấu tick */
+  content: '✔';
+  /*Dấutick*/
+  color: white;
+  /*Màucủadấutick*/
+  font-size: 16px;
+  /*Kíchthướcdấutick*/
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
