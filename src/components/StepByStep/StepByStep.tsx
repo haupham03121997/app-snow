@@ -49,7 +49,7 @@ const StepByStep: React.FC = () => {
     }
   }
   return (
-    <div className='splash-container !text-white'>
+    <div className='splash-container !text-white relative z-[99]'>
       <div className='w-full h-1  absolute top-[5%] -translate-y-1/2 grid grid-cols-2 gap-2 justify-center px-2'>
         <p
           className="bg-slate-200 h-[5px] rounded-lg relative 

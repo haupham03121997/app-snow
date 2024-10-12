@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
+import { snowflake } from '@assets/images'
 import { UserMining } from '@components'
 import { useStore } from '@stores'
 import { ClickableCharacter } from './components'
-import { snowflake } from '@assets/images'
 
 const FleetPage: React.FC = () => {
   const { setPoints, mining } = useStore((state) => state)
@@ -38,7 +38,7 @@ const FleetPage: React.FC = () => {
       <div className='flex-grow mt-8 bg-[#7dc5db] rounded-t-[48px] relative top-glow z-0'>
         <div className='bg-[#1d2025] h-full w-full rounded-t-[46px] mt-[2px] pt-6 px-4 flex flex-col gap-8'>
           <UserMining />
-          <div className='px-4 flex justify-center xxs:pb-24 pb-0'>
+          <div className='flex justify-center xxs:pb-24 pb-0'>
             <ClickableCharacter onClick={handleCardClick} />
           </div>
         </div>
