@@ -13,6 +13,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react'
 import { mainCharacter } from '@assets/images'
 import { StepByStep } from '@components/StepByStep'
 import { TELEGRAM_BOT_URL, WEB_URL_CONNECT_TON_WALLET } from '@constants/config'
+import { cn } from '@lib/utils'
 import './App.css'
 
 function App() {
@@ -50,7 +51,7 @@ function App() {
       {routeElements}
 
       <CSSTransition in={!data || isPending} timeout={500} unmountOnExit>
-        <div className='fixed top-0 left-0 w-screen h-screen bg-black z-[9999] flex items-center justify-center'>
+        <div className={cn('fixed top-0 left-0 w-screen h-screen bg-black z-[9999] flex items-center justify-center')}>
           <img src={mainCharacter} className='w-3/4' />
           <p className='absolute bottom-5'>
             <span className='text-white font-semibold text-2xl text-gradient'>Let's start</span>

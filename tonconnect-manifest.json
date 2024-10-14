@@ -2,6 +2,6 @@
   "url": "https://app-snow-v1.vercel.app",
   "name": "app-snow",
   "iconUrl": "https://ton.vote/logo.png",
-  "termsOfUseUrl": "<terms-of-use-url>",
-  "privacyPolicyUrl": "<privacy-policy-url>"
+  "termsOfUseUrl": "https://app-snow-v1.vercel.app/terms-of-use",
+  "privacyPolicyUrl": "https://app-snow-v1.vercel.app/privacy-policy"
 }
