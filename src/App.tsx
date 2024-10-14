@@ -12,7 +12,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react'
 
 import { mainCharacter } from '@assets/images'
 import { StepByStep } from '@components/StepByStep'
-import { TELEGRAM_BOT_URL, WEB_URL } from '@constants/config'
+import { TELEGRAM_BOT_URL, WEB_URL_CONNECT_TON_WALLET } from '@constants/config'
 import './App.css'
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
   const routeElements = useRouterElements()
   return (
     <TonConnectUIProvider
-      manifestUrl={WEB_URL}
+      manifestUrl={WEB_URL_CONNECT_TON_WALLET}
       actionsConfiguration={{
         twaReturnUrl: TELEGRAM_BOT_URL
       }}
@@ -57,6 +57,7 @@ function App() {
           </p>
         </div>
       </CSSTransition>
+
       <CSSTransition in={isFetching && !isVisible && isGlobalLoading} timeout={500} classNames='fade' unmountOnExit>
         <GlobalLoading />
       </CSSTransition>

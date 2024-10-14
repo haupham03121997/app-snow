@@ -6,7 +6,7 @@ import diamondData from '../../lotties/diamond.json'
 import { mainCharacter } from '@assets/images'
 import { useStore } from '@stores'
 import { convertAgeToPoints } from '@utils'
-import { CalendarCheck } from 'lucide-react'
+import numeral from 'numeral'
 import './index.css'
 
 const optionsDiamond = {
@@ -57,9 +57,13 @@ const GlobalLoading: React.FC = () => {
 
   return (
     <div className='splash-container'>
-      <div className='absolute  top-[20%] -translate-y-1/2'>{View}</div>
-      <div className='absolute w-full top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[9999] flex items-center flex-col'>
-        <img src={mainCharacter} className='w-2/4' />
+      <div className='absolute  top-[30%] -translate-y-1/2'>{View}</div>
+      <div className='mt-4 text-center text-white absolute top-[10%] '>
+        <p className='text-center text-gray-400 text-sm'>Mark your calendar for Snow Man's Listing</p>
+        <p className='text-4xl font-extrabold text-[#C79B00] pt-2 pb-4 font-jetbrains text-gradient'>December 24th!</p>
+      </div>
+      <div className='absolute w-full top-2/3 left-1/2 -translate-y-2/3 -translate-x-1/2 z-[9999] flex items-center flex-col'>
+        <img src={mainCharacter} className='w-1/2' />
 
         <div className='gradient-cards w-full'>
           <div className='car w-full'>
@@ -111,11 +115,11 @@ const GlobalLoading: React.FC = () => {
                 </div>
               </div>
               <p className='text-center pt-6 pb-4 text-4xl font-bold font-jetbrains text-gradient'>
-                {convertAgeToPoints(ageAccount || 0)}
+                {numeral(convertAgeToPoints(ageAccount || 0)).format('0,0')}
               </p>
               <p className='text-center text-white text-lg'>
                 The points you received after{' '}
-                <span className='font-jetbrains text-xl font-semibold'>
+                <span className='font-jetbrains text-xl font-bold text-gradient'>
                   {ageAccount || 0 < 1 ? 'under 1 year' : `${ageAccount} year${ageAccount || 0 > 1 ? 's' : ''}`}
                 </span>{' '}
                 of joining Telegram.
@@ -123,65 +127,8 @@ const GlobalLoading: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className='card px-8'>
-          <div className='container-card bg-white-box w-full'>
-            <div className='flex items-center justify-center w-full h-full'>
-              <div className='w-auto h-auto relative'>
-                <div className='absolute top-1/2 -translate-y-1/2 left-1/2  -translate-x-1/2'>
-                  {' '}
-                  <CalendarCheck className='text-[#b0afb0]' />
-                </div>
-                <svg width={60} height={60} viewBox='0 0 120 120' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                  <rect
-                    x={1}
-                    y={1}
-                    width={118}
-                    height={118}
-                    rx={24}
-                    fill='url(#paint0_linear_1366_4565)'
-                    fillOpacity='0.15'
-                    stroke='url(#paint1_radial_1366_4565)'
-                    strokeWidth={2}
-                  />
-
-                  <defs>
-                    <linearGradient
-                      id='paint0_linear_1366_4565'
-                      x1={0}
-                      y1={0}
-                      x2={120}
-                      y2={120}
-                      gradientUnits='userSpaceOnUse'
-                    >
-                      <stop stopColor='white' stopOpacity='0.7' />
-                      <stop offset='0.505208' stopColor='white' stopOpacity={0} />
-                      <stop offset={1} stopColor='white' stopOpacity='0.7' />
-                    </linearGradient>
-                    <radialGradient
-                      id='paint1_radial_1366_4565'
-                      cx={0}
-                      cy={0}
-                      r={1}
-                      gradientUnits='userSpaceOnUse'
-                      gradientTransform='translate(60 60) rotate(96.8574) scale(122.674 149.921)'
-                    >
-                      <stop stopColor='white' />
-                      <stop offset={1} stopColor='#363437' stopOpacity='0.2' />
-                    </radialGradient>
-                  </defs>
-                </svg>
-              </div>
-            </div>
-            <div className='mt-4 text-center text-white '>
-              <p className='text-4xl font-extrabold text-[#C79B00] pt-6 pb-4 font-jetbrains text-gradient'>
-                December 24th!
-              </p>
-              <p className='text-center text-white text-lg'>Mark your calendar for Snow Man's Listing</p>
-            </div>
-          </div>
-        </div>
       </div>
-      <div className='absolute bottom-4 left w-full px-8'>
+      <div className='absolute bottom-28 left w-full px-8'>
         <div className='w-full h-2 bg-[#43433b]/[0.6] rounded-full mt-8'>
           <div className='progress-gradient h-2 rounded-full' style={{ width: `${processValue}%` }}></div>
         </div>
