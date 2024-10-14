@@ -12,7 +12,6 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react'
 
 import { mainCharacter } from '@assets/images'
 import { StepByStep } from '@components/StepByStep'
-import { TELEGRAM_BOT_URL, WEB_URL_CONNECT_TON_WALLET } from '@constants/config'
 import { cn } from '@lib/utils'
 import './App.css'
 
@@ -43,9 +42,9 @@ function App() {
   const routeElements = useRouterElements()
   return (
     <TonConnectUIProvider
-      manifestUrl={WEB_URL_CONNECT_TON_WALLET}
+      manifestUrl='https://app-snow-v1.vercel.app/tonconnect-manifest.json'
       actionsConfiguration={{
-        twaReturnUrl: TELEGRAM_BOT_URL
+        twaReturnUrl: 'https://t.me/snowman_token_bot'
       }}
     >
       {routeElements}
