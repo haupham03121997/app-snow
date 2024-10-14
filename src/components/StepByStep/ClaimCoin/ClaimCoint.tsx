@@ -5,7 +5,7 @@ import numeral from 'numeral'
 
 const ClaimCoin: React.FC = () => {
   const { ageAccount, isPremiumAccount } = useStore((state) => state)
-  console.log({ ageAccount })
+
   return (
     <>
       <div className='!text-white absolute  top-[14%] -translate-y-1/2'>

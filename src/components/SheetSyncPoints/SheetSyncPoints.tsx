@@ -52,7 +52,7 @@ const SheetSyncPoints: React.FC = () => {
             <SheetHeader className='mt-4'>
               <SheetTitle className='flex justify-center items-center gap-3 '>
                 <img src={hamsterCoin} alt='coin' className='w-14 h-14' />
-                <span className='text-[32px] text-white font-bold'>
+                <span className='text-[32px] text-white font-bold font-jetbrains'>
                   {formatProfitPerHour(dataSync?.points || 0, true)}
                 </span>
               </SheetTitle>

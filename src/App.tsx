@@ -1,6 +1,7 @@
 import WebApp from '@twa-dev/sdk'
 import { useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
+import { CSSTransition } from 'react-transition-group'
 
 import useRouterElements from '@routes/useRouterElement'
 
@@ -9,7 +10,9 @@ import { useConfig, useGetToken, usePostSyncPoints } from '@hooks'
 import { useStore } from '@stores'
 import { TonConnectUIProvider } from '@tonconnect/ui-react'
 
+import { mainCharacter } from '@assets/images'
 import { StepByStep } from '@components/StepByStep'
+import { TELEGRAM_BOT_URL, WEB_URL } from '@constants/config'
 import './App.css'
 
 function App() {
@@ -17,7 +20,7 @@ function App() {
     console.log('App mounted')
   }, [])
 
-  const { data, isPending } = useGetToken()
+  const { data, isPending = true } = useGetToken()
   const { isFetching } = useConfig(data?.token || null)
   const { isGlobalLoading } = useStore((state) => state)
   const { isVisible } = useStore((state) => state)
@@ -39,14 +42,27 @@ function App() {
   const routeElements = useRouterElements()
   return (
     <TonConnectUIProvider
-      manifestUrl='https://7abd-118-69-63-106.ngrok-free.app/tonconnect-manifest.json'
+      manifestUrl={WEB_URL}
       actionsConfiguration={{
-        twaReturnUrl: 'https://t.me/Snowmanbottest_Name_bot'
+        twaReturnUrl: TELEGRAM_BOT_URL
       }}
     >
       {routeElements}
-      {(isFetching || isPending) && !isVisible && isGlobalLoading && <GlobalLoading />}
+
+      <CSSTransition in={!data || isPending} timeout={500} unmountOnExit>
+        <div className='fixed top-0 left-0 w-screen h-screen bg-black z-[9999] flex items-center justify-center'>
+          <img src={mainCharacter} className='w-3/4' />
+          <p className='absolute bottom-5'>
+            <span className='text-white font-semibold text-2xl text-gradient'>Let's start</span>
+          </p>
+        </div>
+      </CSSTransition>
+      <CSSTransition in={isFetching && !isVisible && isGlobalLoading} timeout={500} classNames='fade' unmountOnExit>
+        <GlobalLoading />
+      </CSSTransition>
+
       {isVisible && <StepByStep />}
+
       <Toaster
         containerStyle={{
           top: '10%'

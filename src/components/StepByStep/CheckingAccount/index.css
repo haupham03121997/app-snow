@@ -20,7 +20,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top;
-  z-index: 9999;
+  z-index: 9990;
   display: flex;
   justify-content: center;
   flex-direction: column;
