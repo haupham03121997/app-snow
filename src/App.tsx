@@ -42,7 +42,7 @@ function App() {
   const routeElements = useRouterElements()
   return (
     <TonConnectUIProvider
-      manifestUrl='/tonconnect-manifest.json'
+      manifestUrl='/ton-wallet.json'
       actionsConfiguration={{
         twaReturnUrl: 'https://t.me/snowman_token_bot'
       }}
