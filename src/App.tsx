@@ -42,7 +42,7 @@ function App() {
   const routeElements = useRouterElements()
   return (
     <TonConnectUIProvider
-      manifestUrl='https://app-snow-v1.vercel.app/tonconnect-manifest.json'
+      manifestUrl='/tonconnect-manifest.json'
       actionsConfiguration={{
         twaReturnUrl: 'https://t.me/snowman_token_bot'
       }}
