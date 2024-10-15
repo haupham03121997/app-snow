@@ -12,6 +12,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react'
 
 import { mainCharacter } from '@assets/images'
 import { StepByStep } from '@components/StepByStep'
+import { PATH_TON_WALLET, TELEGRAM_BOT_URL } from '@constants/config'
 import { cn } from '@lib/utils'
 import './App.css'
 
@@ -42,9 +43,9 @@ function App() {
   const routeElements = useRouterElements()
   return (
     <TonConnectUIProvider
-      manifestUrl='/ton-wallet.json'
+      manifestUrl={PATH_TON_WALLET}
       actionsConfiguration={{
-        twaReturnUrl: 'https://t.me/snowman_token_bot'
+        twaReturnUrl: TELEGRAM_BOT_URL
       }}
     >
       {routeElements}
