@@ -17,9 +17,9 @@ function App() {
     console.log('App mounted')
   }, [])
 
-  const { data, isPending = true } = useGetToken()
+  const { data } = useGetToken()
   const { isFetching } = useConfig(data?.token || null)
-  const { isGlobalLoading } = useStore((state) => state)
+  // const { isGlobalLoading } = useStore((state) => state)
   const { isVisible } = useStore((state) => state)
 
   useEffect(() => {
