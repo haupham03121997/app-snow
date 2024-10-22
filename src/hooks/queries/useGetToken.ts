@@ -15,12 +15,20 @@ const useGetToken = () => {
   const user_type_id = getLocalStorage('user_type_id')
   const is_premium = getLocalStorage('is_premium')
 
+  // const bodyRequest: AuthenticateRequest = {
+  //   telegram_id: telegramId ? Number(telegramId) : 6387347744,
+  //   telegram_username: telegramUsername || 'hau_pham_xuan',
+  //   telegram_firstname: telegram_firstname || 'Hau',
+  //   telegram_lastname: telegram_lastname || 'Pham',
+  //   user_type_id: user_type_id || '66cd789afd78c74aec2ef99e',
+  //   is_premium: is_premium || false
+  // }
   const bodyRequest: AuthenticateRequest = {
     telegram_id: telegramId ? Number(telegramId) : 6387347744,
-    telegram_username: telegramUsername || 'hau_pham_xuan',
-    telegram_firstname: telegram_firstname || 'Hau',
-    telegram_lastname: telegram_lastname || 'Pham',
-    user_type_id: user_type_id || '66cd789afd78c74aec2ef99e',
+    telegram_username: telegramUsername,
+    telegram_firstname: telegram_firstname,
+    telegram_lastname: telegram_lastname,
+    user_type_id: user_type_id,
     is_premium: is_premium || false
   }
 
