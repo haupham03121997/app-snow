@@ -7,5 +7,6 @@ export enum QueryKeys {
   AUTH_SYNC = 'auth-sync',
   CLAIM = 'claim',
   START_TASK = 'start-task',
-  TASKS = 'tasks'
+  TASKS = 'tasks',
+  SCHEDULE_TASK = 'schedule-task'
 }
