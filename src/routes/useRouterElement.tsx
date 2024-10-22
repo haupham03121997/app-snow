@@ -14,7 +14,7 @@ export default function useRouterElements() {
     {
       path: PATH.HOME,
       element: (
-        <MainLayout isShowHeader disabledScroll>
+        <MainLayout isShowHeader>
           <FleetPage />
         </MainLayout>
       )

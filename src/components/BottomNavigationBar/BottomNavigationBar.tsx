@@ -2,9 +2,9 @@
 import { memo, useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { binanceLogo } from '@/assets/images'
+import { friendImage, snowManTransparent, taskImage } from '@/assets/images'
 import { syncApi } from '@apis/sync.api'
-import { Coins, Friends, Mine } from '@assets/icons'
+import { Coins } from '@assets/icons'
 import { QueryKeys } from '@constants/queryKeys'
 import { PATH } from '@routes/path'
 import { useStore } from '@stores'
@@ -69,25 +69,25 @@ const BottomNavigationBar = () => {
     {
       className: memoizedClassNames.fleet,
       onClick: () => handleClick('/', 'fleet'),
-      icon: <img src={binanceLogo} alt='Fleet' className='w-8 h-8 mx-auto' />,
-      label: 'Fleet'
+      icon: <img src={snowManTransparent} alt='Fleet' className='w-8 h-8 mx-auto' />,
+      label: 'Home'
     },
-    {
-      className: memoizedClassNames.treasure,
-      onClick: () => handleClick('/treasure', 'treasure'),
-      icon: <Mine className='w-8 h-8 mx-auto' />,
-      label: 'Treasure'
-    },
+    // {
+    //   className: memoizedClassNames.treasure,
+    //   onClick: () => handleClick('/treasure', 'treasure'),
+    //   icon: <Mine className='w-8 h-8 mx-auto' />,
+    //   label: 'Treasure'
+    // },
     {
       className: memoizedClassNames.allies,
       onClick: () => handleClick('/allies', 'allies'),
-      icon: <Friends className='w-8 h-8 mx-auto' />,
+      icon: <img src={friendImage} alt='Friends' className='w-8 h-8 mx-auto object-contain' />,
       label: 'Friends'
     },
     {
       className: memoizedClassNames.quests,
       onClick: () => handleClick('/quests', 'quests'),
-      icon: <Coins className='w-8 h-8 mx-auto' />,
+      icon: <img src={taskImage} alt='Tasks' className='w-10 h-8 mx-auto object-contain' />,
       label: 'Tasks'
     },
     {
@@ -98,24 +98,8 @@ const BottomNavigationBar = () => {
     }
   ]
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const profitPerHour = Number(getLocalStorage('profitPerHour') || 0)
-      const points = Number(getLocalStorage('points') || 0)
-      const initialPoints = Number(getLocalStorage('initialPoints') || 0)
-
-      const pointsPerSecond = (profitPerHour / 3600) * 5
-
-      const pointsValue = points - initialPoints + pointsPerSecond
-
-      mutate.mutate(pointsValue)
-    }, TIMER)
-
-    return () => clearInterval(interval)
-  }, [])
-
   return (
-    <div className='fixed bottom-2 left-1/2 transform -translate-x-1/2 w-[calc(100%-2rem)] max-w-xl bg-[#272a2f] flex justify-around items-center z-50 rounded-3xl text-xs'>
+    <div className='fixed bottom-2 left-1/2 transform -translate-x-1/2 w-[calc(100%-2rem)] max-w-xl bg-[#272a2f] flex justify-around items-center z-50 rounded-2xl text-xs'>
       {navList.map((navItem, index) => (
         <NavItem
           key={index}

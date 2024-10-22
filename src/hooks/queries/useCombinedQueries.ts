@@ -31,11 +31,6 @@ const useCombinedQueries = (token: string | null) => {
         enabled: !!token
       },
       {
-        queryKey: [QueryKeys.AUTH_CARD],
-        queryFn: () => authApi.getCard(),
-        enabled: !!token
-      },
-      {
         queryKey: [QueryKeys.AUTH_INVITE_FRIENDS],
         queryFn: () => inviteApi.getInviteFriends(),
         enabled: !!token

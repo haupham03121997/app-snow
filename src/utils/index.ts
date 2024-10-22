@@ -1,3 +1,6 @@
+import { beginCell } from '@ton/ton'
+import { TonConnectUIError, UserRejectsError } from '@tonconnect/ui-react'
+
 export const calculateProgress = (
   points: number,
   levelIndex: number,
@@ -51,4 +54,23 @@ export const convertAgeToPoints = (age: number) => {
 
 export const randomTime = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+export const isUserRejectAction = (e: unknown) => {
+  if (e instanceof UserRejectsError) {
+    return true
+  }
+}
+
+export const isConnectUIError = (e: unknown) => {
+  if (e instanceof TonConnectUIError) {
+    return true
+  }
+}
+
+export const transactionComment = (text: string) => {
+  const cell = beginCell().storeUint(0x00000000, 32).storeStringTail(text).endCell()
+
+  const boc = cell.toBoc()
+  return boc.toString('base64')
 }

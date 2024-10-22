@@ -29,7 +29,7 @@ const useGetToken = () => {
     onSuccess: (data) => {
       const token = data?.token
       const isNewUser = data?.is_new_user || false
-      const age = data?.age || 0
+      const age = data.age
       const isPremium = data?.is_premium || false
       setAgeAccount(age)
       if (isNewUser) setIsVisible(true)

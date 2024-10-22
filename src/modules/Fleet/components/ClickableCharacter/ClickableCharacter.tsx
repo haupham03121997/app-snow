@@ -1,5 +1,3 @@
-// src/components/ClickableCharacter.tsx
-
 import { mainCharacter } from '@assets/images'
 import React from 'react'
 
@@ -17,23 +15,8 @@ const ClickableCharacter: React.FC<ClickableCharacterProps> = ({ onClick }) => {
   //   }
   // }
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    const count = e.touches.length
-
-    console.log({ count })
-  }
-
-  const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log('card touched', e)
-  }
-
   return (
-    <div
-      className='w-80 h-80 p-4 rounded-full circle-outer'
-      onClick={onClick}
-      onTouchStart={handleTouchStart}
-      onMouseUp={handleMouseUp}
-    >
+    <div className='w-80 h-80 p-4 rounded-full circle-outer' onClick={onClick}>
       <div className='w-full h-full rounded-full circle-inner'>
         <img src={mainCharacter} alt='Main Character' className='w-[90%] h-[90%]' />
       </div>

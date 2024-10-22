@@ -1,5 +1,5 @@
 import { useLottie } from 'lottie-react'
-import React, { memo, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import coinsData from '../../lotties/coins.json'
 import diamondData from '../../lotties/diamond.json'
 
@@ -55,8 +55,12 @@ const GlobalLoading: React.FC = () => {
   const { View } = useLottie(options)
   const { View: ViewDiamond } = useLottie(optionsDiamond)
 
+  const displayAge = (age: number) => {
+    return age > 1 ? `${age} years` : `${age} year`
+  }
+
   return (
-    <div className='splash-container'>
+    <div className='splash-container max-w-xl mx-auto'>
       <div className='absolute  top-[30%] -translate-y-1/2'>{View}</div>
       <div className='w-full h-screen flex justify-center items-center flex-col gap-8'>
         <div className='px-24 w-full'>
@@ -129,7 +133,7 @@ const GlobalLoading: React.FC = () => {
               <p className='text-center text-white text-lg'>
                 The points you received after{' '}
                 <span className='font-jetbrains text-xl font-bold text-gradient'>
-                  {ageAccount || 0 < 1 ? 'under 1 year' : `${ageAccount} year${ageAccount || 0 > 1 ? 's' : ''}`}
+                  {ageAccount >= 1 ? displayAge(ageAccount) : 'under 1 year'}
                 </span>{' '}
                 of joining Telegram.
               </p>
@@ -137,83 +141,8 @@ const GlobalLoading: React.FC = () => {
           </div>
         </div>
       </div>
-      {/* <div className='mt-4 text-center text-white absolute top-[40px] '>
-        <p className='text-center text-gray-400 text-sm'>Mark your calendar for Snow Man's Listing</p>
-        <p className='text-4xl font-extrabold text-[#C79B00] pt-2 pb-4 font-jetbrains text-gradient'>December 24th!</p>
-      </div>
-      <div className='absolute w-full top-2/3 left-1/2 -translate-y-2/3 -translate-x-1/2 z-[9999] flex items-center flex-col'>
-        <img src={mainCharacter} className='w-1/2' />
-
-        <div className='gradient-cards w-full'>
-          <div className='car w-full'>
-            <div className='container-card bg-green-box w-full'>
-              <div className='w-full flex items-center justify-center relative'>
-                <div className='w-auto h-auto relative'>
-                  <div className='absolute  z-40 w-full h-full flex items-center justify-center'>{ViewDiamond}</div>
-                  <div className='relative z-10'>
-                    <svg width={60} height={60} viewBox='0 0 120 120' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                      <rect
-                        x={1}
-                        y={1}
-                        width={118}
-                        height={118}
-                        rx={24}
-                        fill='url(#paint0_linear_1366_4547)'
-                        fillOpacity='0.15'
-                        stroke='url(#paint1_radial_1366_4547)'
-                        strokeWidth={2}
-                      />
-
-                      <defs>
-                        <linearGradient
-                          id='paint0_linear_1366_4547'
-                          x1='0.0063367'
-                          y1='0.168432'
-                          x2='120.853'
-                          y2='119.009'
-                          gradientUnits='userSpaceOnUse'
-                        >
-                          <stop stopColor='#2FCB89' stopOpacity='0.7' />
-                          <stop offset='0.489583' stopColor='#2FCB89' stopOpacity={0} />
-                          <stop offset={1} stopColor='#2FCB89' stopOpacity='0.7' />
-                        </linearGradient>
-                        <radialGradient
-                          id='paint1_radial_1366_4547'
-                          cx={0}
-                          cy={0}
-                          r={1}
-                          gradientUnits='userSpaceOnUse'
-                          gradientTransform='translate(60 60) rotate(96.8574) scale(122.674 149.921)'
-                        >
-                          <stop stopColor='#54E8A9' />
-                          <stop offset={1} stopColor='#1A3E31' stopOpacity='0.2' />
-                        </radialGradient>
-                      </defs>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <p className='text-center pt-6 pb-4 text-4xl font-bold font-jetbrains text-gradient'>
-                {numeral(convertAgeToPoints(ageAccount || 0)).format('0,0')}
-              </p>
-              <p className='text-center text-white text-lg'>
-                The points you received after{' '}
-                <span className='font-jetbrains text-xl font-bold text-gradient'>
-                  {ageAccount || 0 < 1 ? 'under 1 year' : `${ageAccount} year${ageAccount || 0 > 1 ? 's' : ''}`}
-                </span>{' '}
-                of joining Telegram.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className='absolute bottom-28 left w-full px-8'>
-        <div className='w-full h-2 bg-[#43433b]/[0.6] rounded-full mt-8'>
-          <div className='progress-gradient h-2 rounded-full' style={{ width: `${processValue}%` }}></div>
-        </div>
-      </div> */}
     </div>
   )
 }
 
-export default memo(GlobalLoading)
+export default GlobalLoading

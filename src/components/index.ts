@@ -4,8 +4,9 @@ import { GlobalLoading } from './GlobalLoading'
 import { Header } from './Header'
 import { LevelProgress } from './LevelProgress'
 import { PointsIncrement } from './PointsIncrement'
+import { PointsSheet } from './PointsSheet'
 import { ProfitPerHour } from './ProfitPerHour'
-import { SheetSyncPoints } from './SheetSyncPoints'
+import { SyncPointsSheet } from './SyncPointsSheet'
 import { UserMining } from './UserMining'
 import { UserProfile } from './UserProfile'
 
@@ -16,8 +17,9 @@ export {
   Header,
   LevelProgress,
   PointsIncrement,
+  PointsSheet,
   ProfitPerHour,
-  SheetSyncPoints,
+  SyncPointsSheet,
   UserMining,
   UserProfile
 }

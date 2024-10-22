@@ -8,7 +8,7 @@ type AuthState = {
   token: string | null
   isNewUser: boolean
   isPremiumAccount: boolean
-  ageAccount: number | null
+  ageAccount: number
 }
 
 type AuthActions = {
@@ -27,7 +27,7 @@ const initialState: AuthState = {
   token: getLocalStorage('token'),
   isNewUser: false,
   isPremiumAccount: false,
-  ageAccount: null
+  ageAccount: 0
 }
 
 const userSlice: StateCreator<AuthStore> = (set) => {

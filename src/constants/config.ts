@@ -1,7 +1,9 @@
 export const API_URL = 'https://smc.dt.ciis.canon.com/api/'
 
-export const TELEGRAM_BOT_URL = 'https://t.me/snowman_token_bot'
+export const TELEGRAM_BOT_URL = 'https://t.me/snowmangame_bot'
 
-export const WEB_URL_CONNECT_TON_WALLET = 'https://app-snow-v1.vercel.app/tonconnect-manifest.json'
+export const PATH_TON_WALLET = 'https://app-snow.surge.sh/tonconnect-manifest.json'
 
-export const PATH_TON_WALLET = '/tonconnect-manifest.json'
+export const TON_ADDRESS = 'UQBoX4G3-BfJjeu30_jv5K7STZM3oNaRvW2tGIkDL5Nt8O4q'
+
+export const TON_AMOUNT = 0.1
