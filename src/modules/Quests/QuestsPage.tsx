@@ -1,13 +1,13 @@
 import { hamsterCoin } from '@assets/images'
 import { useListTask } from '@hooks'
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 import { DailyTask } from './_components/DailyTask'
 import { ListTask } from './_components/ListTask'
 
 const QuestsPage = () => {
   const queryResult = useListTask()
-  const dataTasks = queryResult.data
-  const isLoading = queryResult.isLoading
+  const dataTasks = useMemo(() => queryResult.data?.data || [], [queryResult.data])
+  const isLoading = useMemo(() => queryResult.isLoading, [queryResult])
   return (
     <div className='text-white font-bold flex flex-col max-w-xl bg-[#1d2025] px-4'>
       <div className='mt-4 flex justify-center'>
@@ -24,7 +24,7 @@ const QuestsPage = () => {
         <p>Daily tasks:</p>
         <DailyTask />
         <p>Social tasks:</p>
-        <ListTask data={dataTasks?.data || []} isLoading={isLoading} />
+        <ListTask data={dataTasks as any} isLoading={isLoading} />
       </div>
     </div>
   )

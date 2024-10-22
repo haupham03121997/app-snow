@@ -3,16 +3,16 @@ import React from 'react'
 import { Dialog, DialogContent } from '@components/ui/dialog'
 import { conditionSocial, urlSocial } from '@constants/conditionSocial'
 import { TaskItem } from '@interfaces/task.interface'
+import { DialogTitle } from '@radix-ui/react-dialog'
 
 interface DialogConfirmProps {
   task: TaskItem
   isShow: boolean
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>
-  onShowDialog: (value: boolean) => void
   onClickAction: (task: TaskItem, url: string) => void
 }
 
-const DialogConfirm: React.FC<DialogConfirmProps> = ({ task, isShow, setIsShow, onShowDialog, onClickAction }) => {
+const DialogConfirm: React.FC<DialogConfirmProps> = ({ task, isShow, setIsShow, onClickAction }) => {
   const urlSocialMapping: Record<number, string> = {
     [conditionSocial.YOUTUBE]: urlSocial.YOUTUBE,
     [conditionSocial.TIKTOK]: urlSocial.TIKTOK,
@@ -20,18 +20,20 @@ const DialogConfirm: React.FC<DialogConfirmProps> = ({ task, isShow, setIsShow, 
   }
 
   return (
-    <Dialog open={isShow} onOpenChange={setIsShow}>
+    <Dialog open={isShow} onOpenChange={(open: boolean) => setIsShow(open)}>
       <DialogContent
+        aria-describedby=''
         className='w-[80%] rounded-xl bg-[#EFEFF3]'
         onInteractOutside={(e) => {
           e.preventDefault()
         }}
       >
+        {/* <DialogTitle></DialogTitle> */}
         <div>
-          <p className='text-center font-semibold'>Open Link</p>
+          <DialogTitle className='text-center font-semibold'>Open Link</DialogTitle>
           <p className='text-center'>Do you want to open "{urlSocialMapping[task.social_type_id] || ''}"?</p>
           <div className='w-full inline-flex justify-around mt-4'>
-            <button className='bg-white py-3 px-12 rounded-lg' onClick={() => onShowDialog(false)}>
+            <button className='bg-white py-3 px-12 rounded-lg' onClick={() => setIsShow(false)}>
               Cancel
             </button>
             <button
