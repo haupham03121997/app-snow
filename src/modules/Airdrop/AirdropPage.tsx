@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { walletApi } from '@apis/wallet.api'
 import Checked from '@assets/icons/Checked'
-import { airdropBgrBottom, hamsterCoin } from '@assets/images'
+import { hamsterCoin } from '@assets/images'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@components/ui/sheet'
 import { useTonAddress, useTonConnectUI } from '@tonconnect/ui-react'
 import { Transactions } from './_components/Transactions'
@@ -118,9 +118,9 @@ const AlliesPage: React.FC = () => {
         )}
       </div>
 
-      <div className='fixed bottom-0 z-10 left-0'>
+      {/* <div className='fixed bottom-0 z-10 left-0'>
         <img src={airdropBgrBottom} alt='airdrop-bottom' />
-      </div>
+      </div> */}
       {showModal && (
         <div className='fixed inset-0 flex items-center justify-center z-[9999999999]'>
           <div className='bg-black bg-opacity-50 absolute inset-0'></div>

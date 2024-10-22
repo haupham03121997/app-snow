@@ -12,8 +12,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { getLocalStorage, normalizePath } from '@utils'
 import NavItem from './NavItem'
 
-const TIMER = 10000
-
 const BottomNavigationBar = () => {
   const { mining } = useStore((state) => state)
   const queryClient = useQueryClient()

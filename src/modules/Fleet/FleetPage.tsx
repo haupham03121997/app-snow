@@ -59,15 +59,17 @@ const FleetPage: React.FC = () => {
         </div>
       </div> */}
 
-      <div className=' bg-[#030303] w-24 h-24 border border-[#7dc5db] rounded-full flex items-center justify-center absolute right-1/2 translate-x-1/2 top-24 z-[99]'>
-        {View}
-      </div>
       <div className='flex-grow mt-20 bg-[#7dc5db] rounded-t-[48px] relative top-glow z-0 '>
-        <div className='bg-[#1d2025] h-full w-full rounded-t-[46px] mt-[2px] pt-6  flex flex-col gap-8'>
-          <div className='px-4 flex flex-col justify-center items-center xxs:pb-24 pb-0 h-full -mt-6'>
+        <div className=' bg-[#030303] w-24 h-24 border border-[#7dc5db] rounded-full flex items-center justify-center absolute right-1/2 translate-x-1/2 top-[-48px] z-[99]'>
+          {View}
+        </div>
+        <div className='bg-[#1d2025] h-full w-full rounded-t-[46px] mt-[2px] pt-16  flex flex-col gap-8'>
+          <div className='px-4 flex flex-col gap-6 justify-center items-center xxs:pb-24 pb-0 h-full -mt-6'>
             <div className='h-[150px] w-full space-y-4 p-5 rounded-2xl relative'>
               <p className='text-center'>Your coins </p>
-              <p className='text-6xl text-center font-jetbrains text-gradient'>{numeral(points).format('0,0')}</p>
+              <p className='text-4xl font-extrabold text-center font-jetbrains text-gradient'>
+                {numeral(points).format('0,0')}
+              </p>
             </div>
 
             <ClickableCharacter onClick={handleCardClick} />

@@ -5,8 +5,8 @@ import { CSSTransition } from 'react-transition-group'
 
 import useRouterElements from '@routes/useRouterElement'
 
-import { GlobalLoading, SyncPointsSheet } from '@components'
-import { useConfig, useGetToken, usePostSyncPoints } from '@hooks'
+import { GlobalLoading } from '@components'
+import { useConfig, useGetToken } from '@hooks'
 import { useStore } from '@stores'
 import { TonConnectUIProvider } from '@tonconnect/ui-react'
 
@@ -38,7 +38,7 @@ function App() {
     initWebApp()
   }, [])
 
-  usePostSyncPoints(isFetching && !!data && !data?.is_new_user)
+  // usePostSyncPoints(isFetching && !!data && !data?.is_new_user)
 
   const routeElements = useRouterElements()
   return (
@@ -58,6 +58,7 @@ function App() {
           </p>
         </div>
       </CSSTransition>
+
       {!data && isPending && (
         <>
           <div
@@ -87,7 +88,7 @@ function App() {
           duration: 3000
         }}
       />
-      <SyncPointsSheet />
+      {/* <SyncPointsSheet /> */}
       {/* <PointsIncrement /> */}
     </TonConnectUIProvider>
   )

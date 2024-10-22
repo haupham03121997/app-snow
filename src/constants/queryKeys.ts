@@ -6,5 +6,6 @@ export enum QueryKeys {
   AUTH_INVITE_FRIENDS = 'auth-invite-friends',
   AUTH_SYNC = 'auth-sync',
   CLAIM = 'claim',
-  START_TASK = 'start-task'
+  START_TASK = 'start-task',
+  TASKS = 'tasks'
 }
