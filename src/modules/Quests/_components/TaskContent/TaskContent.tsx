@@ -9,6 +9,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { formatProfitPerHour } from '@utils'
 import React, { useEffect, useMemo, useState } from 'react'
 import { DialogConfirm } from '../DialogConfirm'
+import { conditionSocial } from '@constants/conditionSocial'
 
 interface TaskContentProps {
   task: TaskItem
@@ -73,7 +74,12 @@ const TaskContent: React.FC<TaskContentProps> = ({ task, isOpen }) => {
   }
 
   const handleClickAction = async (task: TaskItem, url: string) => {
-    window.location.href = url
+    if (task.social_type_id == conditionSocial.TELEGRAM) {
+      window.location.href = task.link || ''
+    } else {
+      window.location.href = url
+    }
+
     await handleStartTask(task.id)
   }
 

@@ -11,4 +11,5 @@ export interface TaskItem {
   coins: string
   started: boolean
   claimed: boolean
+  link?: string
 }
