@@ -50,6 +50,10 @@ const DayCheckIn: React.FC<DayCheckInProps> = ({ day }) => {
         queryKey: [QueryKeys.SCHEDULE_TASK],
         type: 'active'
       })
+      queryClient.refetchQueries({
+        queryKey: [QueryKeys.AUTH_MINING],
+        type: 'active'
+      })
     },
     onError: (error) => {
       console.log('check on error: ', error)

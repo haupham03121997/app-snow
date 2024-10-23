@@ -31,14 +31,20 @@ const DialogConfirm: React.FC<DialogConfirmProps> = ({ task, isShow, setIsShow, 
         {/* <DialogTitle></DialogTitle> */}
         <div>
           <DialogTitle className='text-center font-semibold'>Open Link</DialogTitle>
-          <p className='text-center'>Do you want to open "{urlSocialMapping[task.social_type_id] || ''}"?</p>
+          {task.social_type_id == conditionSocial.TELEGRAM ? (
+            <p className='text-center'>Do you want to open "{task.link}"?</p>
+          ) : (
+            <p className='text-center'>
+              Do you want to open "{urlSocialMapping[task.social_type_id] + task.social_info || ''}"?
+            </p>
+          )}
           <div className='w-full inline-flex justify-around mt-4 gap-3'>
             <button className='bg-white py-3 px-12 rounded-lg' onClick={() => setIsShow(false)}>
               Cancel
             </button>
             <button
               className='bg-[#2381CC] py-3 px-12 rounded-lg text-white'
-              onClick={() => onClickAction(task, urlSocialMapping[task.social_type_id] || '')}
+              onClick={() => onClickAction(task, urlSocialMapping[task.social_type_id] + task.social_info || '')}
             >
               Open
             </button>
