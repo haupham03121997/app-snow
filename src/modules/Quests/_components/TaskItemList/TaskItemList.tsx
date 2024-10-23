@@ -1,9 +1,10 @@
+import { Gem } from 'lucide-react'
+import React from 'react'
+
 import { hamsterCoin } from '@assets/images'
 import { Sheet, SheetContent, SheetTitle } from '@components/ui/sheet'
 import { TaskItem } from '@interfaces/task.interface'
 import { formatProfitPerHour } from '@utils'
-import { Gem } from 'lucide-react'
-import React from 'react'
 import { TaskContent } from '../TaskContent'
 
 interface TaskItemListProps {
@@ -11,6 +12,7 @@ interface TaskItemListProps {
 }
 const TaskItemList: React.FC<TaskItemListProps> = ({ task }) => {
   const [isOpen, setIsOpen] = React.useState(false)
+
   return (
     <>
       <div
@@ -30,6 +32,7 @@ const TaskItemList: React.FC<TaskItemListProps> = ({ task }) => {
           </p>
         </div>
       </div>
+
       <Sheet open={isOpen} onOpenChange={(open: boolean) => setIsOpen(open)}>
         <SheetContent
           aria-describedby=''
@@ -39,7 +42,7 @@ const TaskItemList: React.FC<TaskItemListProps> = ({ task }) => {
           classNameIcon='right-4 top-5 focus:ring-0 '
         >
           <SheetTitle></SheetTitle>
-          <TaskContent task={task} />
+          {isOpen && <TaskContent task={task} isOpen={isOpen} />}
         </SheetContent>
       </Sheet>
     </>

@@ -56,7 +56,7 @@ const AlliesPage: React.FC = () => {
           onClick={handleInviteFriend}
         >
           <p className='flex items-center justify-center'>
-            invite a friend <img src={hamsterCoin} alt='airdrop' className='h-5 mx-auto pl-2' />
+            Invite a friend <img src={hamsterCoin} alt='airdrop' className='h-5 mx-auto pl-2' />
           </p>
         </div>
         <div

@@ -12,7 +12,7 @@ const SyncPointsSheet: React.FC = () => {
   const queryClient = useQueryClient()
 
   const [isLoading, setIsLoading] = React.useState(false)
-  const { dataSync, isShowSheetSync, isVisible, setShowSheetSync, isNewUser } = useStore((state) => state)
+  const { dataSync, setShowSheetSync } = useStore((state) => state)
 
   const { mutateAsync: receivePoints } = useMutation({
     mutationFn: (points: number) => syncApi.postSync({ points, energy: 0 }),
@@ -40,7 +40,7 @@ const SyncPointsSheet: React.FC = () => {
   return (
     <>
       <PointsSheet
-        open={isShowSheetSync && !isVisible && !isNewUser}
+        open={true}
         onClose={() => setShowSheetSync(false)}
         title={formatProfitPerHour(dataSync?.points || 0, true)}
         description='The exchange has started working for you.'

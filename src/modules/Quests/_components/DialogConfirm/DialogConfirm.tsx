@@ -32,7 +32,7 @@ const DialogConfirm: React.FC<DialogConfirmProps> = ({ task, isShow, setIsShow, 
         <div>
           <DialogTitle className='text-center font-semibold'>Open Link</DialogTitle>
           <p className='text-center'>Do you want to open "{urlSocialMapping[task.social_type_id] || ''}"?</p>
-          <div className='w-full inline-flex justify-around mt-4'>
+          <div className='w-full inline-flex justify-around mt-4 gap-3'>
             <button className='bg-white py-3 px-12 rounded-lg' onClick={() => setIsShow(false)}>
               Cancel
             </button>

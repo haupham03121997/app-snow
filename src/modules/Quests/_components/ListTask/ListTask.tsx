@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 
 import { TaskItem } from '@interfaces/task.interface'
 import { TaskItemList } from '../TaskItemList'
@@ -13,10 +13,9 @@ const ListTask: React.FC<ListTaskProps> = ({ data, isLoading }) => {
   return (
     <>
       {isLoading && <TaskSkeleton keyName='list-task' size={3} />}
-      {!isLoading &&
-        data?.filter((_) => _.social_type_id != 1).map((task: TaskItem) => <TaskItemList task={task} key={task.id} />)}
+      {!isLoading && data.map((task) => <TaskItemList task={task} key={task.id} />)}
     </>
   )
 }
 
-export default memo(ListTask)
+export default ListTask
