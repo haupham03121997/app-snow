@@ -91,7 +91,7 @@ const BottomNavigationBar = () => {
     {
       className: memoizedClassNames.airdrop,
       onClick: () => handleClick('/airdrop', 'airdrop'),
-      icon: <Coins className='w-8 h-8 mx-auto' />,
+      icon: <Coins className='w-6 h-6 mx-auto' />,
       label: 'Airdrop'
     }
   ]

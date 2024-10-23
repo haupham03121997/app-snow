@@ -2,12 +2,14 @@ import { DataTask } from '@interfaces/task.interface'
 import fetcher from './fetcher'
 
 export const taskApi = {
-  getClaim: async (id: string) => {
+  getClaim: async (id: string, signal: any) => {
     try {
-      const response = await fetcher.get<DataTask>(`/social-task/${id}/claim`)
+      const response = await fetcher.get<DataTask>(`/social-task/${id}/claim`, {
+        signal
+      })
       return response.data
     } catch (error: any) {
-      throw new Error(error)
+      throw new Error(error?.response?.data?.message || error)
     }
   },
   postStartTask: async (id: string) => {

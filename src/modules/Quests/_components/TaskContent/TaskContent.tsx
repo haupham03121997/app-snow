@@ -1,124 +1,128 @@
 import { taskApi } from '@apis/task.api'
-import { hamsterCoin, questionCoin } from '@assets/images'
+import { hamsterCoin, mainCharacter } from '@assets/images'
+import { Button } from '@components/ui/button'
+import { QueryKeys } from '@constants/queryKeys'
+import { useGetClaim } from '@hooks'
 import { TaskItem } from '@interfaces/task.interface'
-import { useMutation } from '@tanstack/react-query'
-import numeral from 'numeral'
-import React from 'react'
+import { cn } from '@lib/utils'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { formatProfitPerHour } from '@utils'
+import React, { useEffect, useMemo, useState } from 'react'
 import { DialogConfirm } from '../DialogConfirm'
 
 interface TaskContentProps {
   task: TaskItem
-  clickShowDialog: (value: boolean) => void
-  checkClaim: (id: string) => void
-  getClaimIsLoading: boolean
-  isShow: boolean
-  setIsShow: any
+  isOpen?: boolean
 }
 
-const TaskContent: React.FC<TaskContentProps> = ({
-  clickShowDialog,
-  task,
-  checkClaim,
-  getClaimIsLoading,
-  isShow,
-  setIsShow
-}) => {
-  const { mutateAsync } = useMutation({
-    mutationFn: (id: string) => taskApi.postStartTask(id)
+const TaskContent: React.FC<TaskContentProps> = ({ task, isOpen }) => {
+  const queryClient = useQueryClient()
+
+  const [isClaiming, setIsClaiming] = useState(false)
+  const [isDialogVisible, setIsDialogVisible] = useState(false)
+
+  const controller = new AbortController()
+  const signal = controller.signal
+
+  const { mutateAsync: startTask } = useMutation({
+    mutationFn: (id: string) => taskApi.postStartTask(id),
+    onSuccess: () => {
+      queryClient.refetchQueries({
+        queryKey: [QueryKeys.TASKS],
+        type: 'active'
+      })
+      setIsClaiming(false)
+    },
+    onError: () => {
+      setIsClaiming(false)
+    },
+    onSettled: () => {
+      setIsClaiming(false)
+    }
   })
 
-  const postStartTask = async (id: string) => {
+  const claimQuery = useGetClaim(
+    task.id,
+    {
+      enabled: isClaiming,
+      gcTime: 0,
+      staleTime: 0
+    },
+    signal
+  )
+
+  const isClaimLoading = useMemo(() => claimQuery.isLoading, [claimQuery])
+
+  useEffect(() => {
+    return () => {
+      controller.abort()
+    }
+  }, [isOpen])
+
+  const handleClaim = () => {
+    setIsClaiming(true)
+    claimQuery.refetch()
+  }
+
+  const handleStartTask = async (id: string) => {
     try {
-      mutateAsync(id)
-    } catch (error) {}
+      await startTask(id)
+    } catch (error) {
+      console.error(error)
+    }
   }
-  const clickAction = async (task: TaskItem, url: string) => {
+
+  const handleClickAction = async (task: TaskItem, url: string) => {
     window.location.href = url
-    await postStartTask(task.id)
+    await handleStartTask(task.id)
   }
+
   return (
     <>
       <div className='bg-[black] h-full w-full rounded-t-[38px] mt-[2px] py-6 px-4'>
-        <div className='bg-[#272a2f] rounded-2xl p-4 grid gap-3 mt-1'>
-          <div className='flex justify-center'>
-            <img src={hamsterCoin} alt='binanceLogo' className='h-16 w-16' />
+        <div className='bg-[#272a2f] py-8 px-6 rounded-3xl relative mt-8'>
+          <div className='absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 bg-black rounded-full p-2'>
+            <div className='bg-[#272a2f] rounded-full w-full h-full flex items-center justify-center'>
+              <img src={mainCharacter} alt='Main Character' className='w-[80%] h-[80%]' />
+            </div>
           </div>
-          <p className='text-xl text-center'>{task.name}</p>
-          <div className='flex justify-center'>
-            {task.started ? (
-              <button className='text-lg bg-gray-400 justify-center rounded-lg w-[100px]'>Join</button>
-            ) : (
+          <div className='flex flex-col items-center gap-4 mt-4'>
+            <div className='flex justify-center gap-3 '>
+              <img src={hamsterCoin} alt='Task Icon' className='h-14 w-14' />
+              <span className='text-[32px] text-white font-extrabold font-jetbrains text-gradient'>
+                {formatProfitPerHour(Number(task.coins || 0))}
+              </span>
+            </div>
+
+            <p className='text-base font-semibold text-center'>{task.name}</p>
+            <div className='flex justify-center'>
               <button
-                className='text-lg bg-[#65C0E4] justify-center rounded-lg w-[100px]'
-                onClick={() => clickShowDialog(true)}
+                className={cn('py-2 bg-slate-400 justify-center rounded-lg w-[100px]', {
+                  'bg-[#65C0E4]': !task.started
+                })}
+                onClick={() => !task.started && setIsDialogVisible(true)}
               >
-                Join
+                {task.started ? 'Joined' : 'Join'}
               </button>
-            )}
-          </div>
-          <div className='flex items-center justify-center gap-2 text-2xl'>
-            <img src={questionCoin} alt='binanceLogo' className='h-8' /> {numeral(task.coins).format('0,0')}
+            </div>
           </div>
         </div>
+
         <div className='mt-3'>
-          {!task.claimed && task.started ? (
-            <div
-              onClick={() => checkClaim(task.id)}
-              className='flex-1 bg-gradient-to-b from-[#D3BA40]  to-[#F9A208] h-[66px] w-full flex justify-center rounded-2xl'
-            >
-              <button className='flex items-center justify-center font-bold text-base text-white'>
-                {getClaimIsLoading && (
-                  <svg className='animate-spin h-5 w-5 mr-3 stroke-white' viewBox='0 0 24 24'>
-                    <circle
-                      className='opacity-25'
-                      cx='12'
-                      cy='12'
-                      r='10'
-                      stroke='currentColor'
-                      strokeWidth='4'
-                    ></circle>
-                    <path
-                      className='opacity-75'
-                      fill='currentColor'
-                      d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
-                    ></path>
-                  </svg>
-                )}
-                {getClaimIsLoading ? 'Receiving...' : 'Check'}
-              </button>
-            </div>
-          ) : (
-            <div className='flex-1 bg-gradient-to-b bg-gray-400 h-[66px] w-full flex justify-center rounded-2xl'>
-              <button className='flex items-center justify-center font-bold text-base text-white'>
-                {getClaimIsLoading && (
-                  <svg className='animate-spin h-5 w-5 mr-3 stroke-white' viewBox='0 0 24 24'>
-                    <circle
-                      className='opacity-25'
-                      cx='12'
-                      cy='12'
-                      r='10'
-                      stroke='currentColor'
-                      strokeWidth='4'
-                    ></circle>
-                    <path
-                      className='opacity-75'
-                      fill='currentColor'
-                      d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
-                    ></path>
-                  </svg>
-                )}
-                {getClaimIsLoading ? 'Receiving...' : 'Check'}
-              </button>
-            </div>
-          )}
+          <Button
+            loading={!!isClaimLoading}
+            onClick={handleClaim}
+            disabled={(task.claimed && task.started) || isClaimLoading}
+          >
+            {isClaimLoading ? 'Receiving...' : 'Check'}
+          </Button>
         </div>
       </div>
       <DialogConfirm
         task={task}
-        isShow={isShow}
-        setIsShow={setIsShow}
-        onShowDialog={clickShowDialog}
-        onClickAction={clickAction}
+        isShow={isDialogVisible}
+        setIsShow={setIsDialogVisible}
+        onClickAction={handleClickAction}
       />
     </>
   )

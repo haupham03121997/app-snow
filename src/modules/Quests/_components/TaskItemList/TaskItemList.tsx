@@ -1,61 +1,51 @@
-import { Coins } from '@assets/icons'
-import { questionCoin } from '@assets/images'
-import { SheetTitle, SheetTrigger } from '@components/ui/sheet'
-import { TaskItem } from '@interfaces/task.interface'
-import { cn } from '@lib/utils'
-import numeral from 'numeral'
+import { Gem } from 'lucide-react'
 import React from 'react'
 
+import { hamsterCoin } from '@assets/images'
+import { Sheet, SheetContent, SheetTitle } from '@components/ui/sheet'
+import { TaskItem } from '@interfaces/task.interface'
+import { formatProfitPerHour } from '@utils'
+import { TaskContent } from '../TaskContent'
+
 interface TaskItemListProps {
-  isShow?: boolean
   task: TaskItem
 }
-const TaskItemList: React.FC<TaskItemListProps> = ({ task, isShow }) => {
-  const [isClicked, setIsClicked] = React.useState(false)
+const TaskItemList: React.FC<TaskItemListProps> = ({ task }) => {
+  const [isOpen, setIsOpen] = React.useState(false)
 
-  const handleClick = () => {
-    setIsClicked(true)
-    setTimeout(() => {
-      setIsClicked(false)
-    }, 200) // Duration of the scale effect
-  }
-
-  const handleMouseDown = () => {
-    setIsClicked(true)
-  }
-
-  const handleMouseUp = () => {
-    setIsClicked(false)
-  }
   return (
-    <SheetTrigger
-      asChild
-      onClick={handleClick}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      className={cn(
-        'relative w-full overflow-hidden  rounded-lg transition-transform duration-200 bg-gradient-to-r  p-[0.5px]',
-        isClicked ? 'scale-75' : 'transform scale',
-        isShow ? 'from-pink-500 via-red-500 to-yellow-500' : 'bg-[#272a2f]'
-      )}
-    >
-      <SheetTitle
-        className='h-[80px] leading-4 text-white font- bg-gradient-to-b from-[#676767] to-[#010101] border border-[#676767] rounded-lg p-[10px] flex items-center space-x-4 my-3'
+    <>
+      <div
+        onClick={() => setIsOpen(true)}
         key={task.id}
+        className='bg-[#272a2fcb]  rounded-2xl p-5 leading-7 flex items-center space-x-4 px-4 mb-5'
       >
-        <div className='text-[#F4E493]'>
-          <Coins className='w-8 h-8 mx-auto' />
+        <div>
+          <Gem size={42} />
         </div>
-        <div className='text-base'>
-          <p>{task.name}</p>
-          <p className='flex items-center text-[#F4E493]'>
-            {' '}
-            <img src={questionCoin} alt='binanceLogo' className='h-5 pr-1' /> +{numeral(task.coins).format('0,0')}{' '}
+        <div className=''>
+          <p className='text-lg'>{task.name}</p>
+          <p className='flex gap-2 items-center pt-2'>
+            <span className='w-2 h-2 bg-[#7dc5db] rounded-full animate-blink'></span>
+            <img src={hamsterCoin} alt='airdrop' className='h-5' />
+            <span className='text-[#7dc5db] text-sm'>{formatProfitPerHour(Number(task.coins))} </span>
           </p>
         </div>
-      </SheetTitle>
-    </SheetTrigger>
+      </div>
+
+      <Sheet open={isOpen} onOpenChange={(open: boolean) => setIsOpen(open)}>
+        <SheetContent
+          aria-describedby=''
+          onInteractOutside={(e) => e.preventDefault()}
+          side={'bottom'}
+          className='rounded-t-[38px] border-t-0 bg-[#7dc5db] top-glow p-0 text-white'
+          classNameIcon='right-4 top-5 focus:ring-0 '
+        >
+          <SheetTitle></SheetTitle>
+          {isOpen && <TaskContent task={task} isOpen={isOpen} />}
+        </SheetContent>
+      </Sheet>
+    </>
   )
 }
 export default TaskItemList

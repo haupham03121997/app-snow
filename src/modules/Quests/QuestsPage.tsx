@@ -5,9 +5,10 @@ import { DailyTask } from './_components/DailyTask'
 import { ListTask } from './_components/ListTask'
 
 const QuestsPage = () => {
-  const queryResult = useListTask()
-  const dataTasks = queryResult.data
-  const isLoading = queryResult.isLoading
+  const { data, isLoading } = useListTask()
+
+  const taskList = data?.data?.filter((_) => _.social_type_id != 1) || []
+
   return (
     <div className='text-white font-bold flex flex-col max-w-xl bg-[#1d2025] px-4'>
       <div className='mt-4 flex justify-center'>
@@ -21,10 +22,10 @@ const QuestsPage = () => {
         </div>
       </div>
       <div className='mb-20 px-2 '>
-        <p>Daily tasks:</p>
+        <p className='mb-2'>Daily tasks:</p>
         <DailyTask />
-        <p>Social tasks:</p>
-        <ListTask data={dataTasks?.data || []} isLoading={isLoading} />
+        <p className='mb-2'>Social tasks:</p>
+        <ListTask data={taskList} isLoading={isLoading} />
       </div>
     </div>
   )

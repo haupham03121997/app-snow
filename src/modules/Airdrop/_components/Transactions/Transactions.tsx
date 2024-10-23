@@ -11,6 +11,7 @@ import { syncApi } from '@apis/sync.api'
 import { walletApi } from '@apis/wallet.api'
 import { PointsSheet } from '@components'
 import { ToastAction, ToastActionElement } from '@components/ui/toast'
+import { Toaster } from '@components/ui/toaster'
 import { TON_ADDRESS, TON_AMOUNT } from '@constants/config'
 import { toNano } from '@ton/ton'
 import { toast as toastHot } from 'react-hot-toast'
@@ -179,6 +180,7 @@ export default function CreateTransaction() {
         buttonText='Receive points'
         buttonAction={() => setIsDisplaySheet(false)}
       />
+      <Toaster />
     </>
   )
 }
